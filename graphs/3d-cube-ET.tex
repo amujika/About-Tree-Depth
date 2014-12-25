@@ -1,0 +1,78 @@
+\begin{tikzpicture}[node distance   = 2 cm]]
+
+  \tikzset{G node/.style={
+   shape = circle,
+   fill  = blue!15,
+   draw,
+   font  = \sffamily\small\bfseries}
+   }
+  \tikzset{T node/.style={
+   shape = circle,
+   minimum size = 0.8cm,
+   fill  = red!15,
+   draw,
+   font  = \sffamily\small\bfseries}
+   }
+  \tikzset{EdgeStyle/.style= {thick}}
+  \tikzset{F EdgeStyle/.style= {
+  thick,
+  dashed}}
+%G graph
+  \node[G node] (G1) {A};
+  \node[G node] (G2) [right = 4cm of G1] {B};
+  \node[G node] (G3) [below = 4cm of G2] {C};
+  \node[G node] (G4) [left = 4cm of G3] {D};
+  \node[G node] (g1) [below right of=G1] {a};
+  \node[G node] (g2) [right of=g1] {b};
+  \node[G node] (g3) [below of=g2] {c};
+  \node[G node] (g4) [left of=g3] {d};
+ 
+  \draw[EdgeStyle](G1) to (G2);
+  \draw[EdgeStyle](G2) to (G3);
+  \draw[EdgeStyle](G3) to (G4);
+  \draw[EdgeStyle](G4) to (G1);
+  
+  \draw[EdgeStyle](g1) to (g2);
+  \draw[EdgeStyle](g2) to (g3);
+  \draw[EdgeStyle](g3) to (g4);
+  \draw[EdgeStyle](g4) to (g1);
+  
+  \draw[EdgeStyle](G1) to (g1);
+  \draw[EdgeStyle](G2) to (g2);
+  \draw[EdgeStyle](G3) to (g3);
+  \draw[EdgeStyle](G4) to (g4);
+  
+%F graph
+  \node[T node] (F1) [right = 4cm of G2] {B};
+  \node[T node] (F2) [below of=F1] {a};
+  \node[T node] (F3) [below of=F2] {D};
+  \node[T node] (F4) [below left of=F3] {A};
+  \node[T node] (F5) [below right of=F3] {c};
+  \node[T node] (F6) [below of=F5] {d};
+  \node[T node] (F7) [below right of=F5] {b};
+  \node[T node] (F8) [right of=F5] {C};
+  
+  \draw[EdgeStyle](F1) to (F2);
+  \draw[EdgeStyle](F2) to (F3);
+  \draw[EdgeStyle](F3) to (F4);
+  \draw[EdgeStyle](F3) to (F5);
+  \draw[EdgeStyle](F5) to (F6);
+  \draw[EdgeStyle](F5) to (F7);
+  \draw[EdgeStyle](F5) to (F8);
+  
+%clos(F) edgesF EdgeStyle
+  \draw[F EdgeStyle][bend right=45](F1) to (F3);
+  \draw[F EdgeStyle][bend right=30](F1) to (F4);
+  \draw[F EdgeStyle][bend left=45](F1) to (F5);
+  \draw[F EdgeStyle][bend right=45](F1) to (F6);
+  \draw[F EdgeStyle][bend left=20](F1) to (F7);
+  \draw[F EdgeStyle][bend left=45](F1) to (F8);
+  \draw[F EdgeStyle][bend right=30](F2) to (F4);
+  \draw[F EdgeStyle][bend left=10](F2) to (F7);
+  \draw[F EdgeStyle][bend left=30](F2) to (F8);
+  \draw[F EdgeStyle][bend left=30](F2) to (F5);
+  \draw[F EdgeStyle][bend right=45](F2) to (F6);
+  \draw[F EdgeStyle][bend right=30](F3) to (F6);
+  \draw[F EdgeStyle][bend right=50](F3) to (F7);
+  \draw[F EdgeStyle][bend left=20](F3) to (F8);
+\end{tikzpicture}

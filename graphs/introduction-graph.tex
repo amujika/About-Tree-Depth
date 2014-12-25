@@ -1,0 +1,24 @@
+\begin{tikzpicture}[node distance   = 4 cm]]
+
+  \tikzset{main node/.style={
+   shape = circle,
+   fill  = blue!15,
+   draw,
+   font  = \sffamily\small\bfseries}
+   }
+  \tikzset{EdgeStyle/.style= {thick}}
+
+  \node[main node] (1) [label=A] {};
+  \node[main node] (2) [below left of=1] [label=B] {};
+  \node[main node] (3) [below right of=2] [label=C] {};
+  \node[main node] (4) [below right of=1] [label=D] {};
+  \node[main node] (5) [right of=4] [label=E] {};
+  \node[main node] (6) [right of=3] [label=F] {};
+
+  \draw[EdgeStyle](1) to (2);
+  \draw[EdgeStyle](1) to (4);
+  \draw[EdgeStyle](2) to (3);
+  \draw[EdgeStyle](2) to (4);
+  \draw[EdgeStyle](4) to (5);
+
+\end{tikzpicture}

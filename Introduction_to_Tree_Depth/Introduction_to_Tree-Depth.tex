@@ -1,0 +1,37 @@
+\section{Introduction to Tree Depth}
+
+\subsection{Basic definitions}
+
+\paragraph{}
+Vertex x is said to be the ancestor of y in a rooted forest F, if and only if x belongs to the path between y and the root of the component to which x belongs, y included.
+\paragraph{}
+The closure of a rooted forest F, expressed as C = clos(F), is defined as follows:
+\begin{itemize}
+  \item V(C) = V(F)
+  \item E(C) = \{\{x, y\} : x is an ancestor of y in F, x $\neq$ y \}
+\end{itemize}
+\begin{figure}[h]
+\input{./graphs/closure-example.tex}
+\caption{The blue graph at the left is a rooted forest F, the red graph at the right represents clos(F).}
+\end{figure}
+
+\subsection{Tree Depth}
+
+\paragraph{Definition:}The tree-depth td(G) of a graph G is the minimum height of a rooted forest F such that G $\subseteq$ clos(F)
+
+\begin{figure}[H]
+\input{./graphs/3d-cube-ET.tex}
+\caption{The graph G and tree T are in the left and right respectively. The doted edges in T, represent the clos(T). Because G $\subseteq$ clos(T), we know that td(G) is at most 4.\label{fig:3d-cube}}
+\end{figure}
+\paragraph{}
+The tree depth of a graph G is a numerical invariant of a graph. In other words, the tree depth is a property that depends only  on the abstract structure of a graph, not in its	 representation.	
+
+\subsection{Elimination tree}
+\paragraph{}
+An elimination tree Y of a connected graph G is defined recursively as follows:
+\begin{itemize}
+  \item If V(G) = \{x\} then Y is just \{x\}.
+  \item Otherwise, r $\in$ V(G) is chosen as the root of Y and an elimination tree is created for each component of G-r. r will be connected to the root of each of these trees.
+\end{itemize}
+The tree T in Figure~\ref{fig:3d-cube} is an elimination tree for the graph G.
+\paragraph{} 

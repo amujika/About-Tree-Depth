@@ -1,0 +1,46 @@
+\begin{tikzpicture}[node distance   = 2 cm]]
+
+  \tikzset{F node/.style={
+   shape = circle,
+   fill  = blue!15,
+   draw,
+   font  = \sffamily\small\bfseries}
+   }
+  \tikzset{C node/.style={
+   shape = circle,
+   fill  = red!15,
+   draw,
+   font  = \sffamily\small\bfseries}
+   }
+  \tikzset{EdgeStyle/.style= {thick}}
+%F graph
+  \node[F node] (F1) [label=Root] {};
+  \node[F node] (F2) [below of=F1] {};
+  \node[F node] (F3) [below right of=F2] {};
+  \node[F node] (F4) [below left of=F2] {};
+  \node[F node] (F5) [below  of=F4] {};
+  \node[F node] (F6) [right of = F1][label=Root] {};
+ 
+  \draw[EdgeStyle](F1) to (F2);
+  \draw[EdgeStyle](F2) to (F3);
+  \draw[EdgeStyle](F2) to (F4);
+  \draw[EdgeStyle](F4) to (F5);
+  
+%C graph  
+  \node[C node] (C1) [right = 8cm of F1] {};
+  \node[C node] (C2) [below of=C1] {};
+  \node[C node] (C3) [below right of=C2] {};
+  \node[C node] (C4) [below left of=C2] {};
+  \node[C node] (C5) [below  of=C4] {};
+  \node[C node] (C6) [right of=C1] {};
+   
+  \draw[EdgeStyle](C1) to (C2);
+  \draw[EdgeStyle](C1) to (C3);
+  \draw[EdgeStyle](C1) to (C4);
+  \draw[EdgeStyle][bend right=45](C1) to (C5);
+  \draw[EdgeStyle](C2) to (C3);
+  \draw[EdgeStyle](C2) to (C4);
+  \draw[EdgeStyle](C2) to (C5);
+  \draw[EdgeStyle](C4) to (C5);
+
+\end{tikzpicture}
