@@ -2,6 +2,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage{import}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 
@@ -9,10 +10,10 @@
 
 \begin{document}
 
-\input{./Title/title.tex}
+\subimport*{Title/}{title}
 	
-\input{./Introduction_to_graph_theory/Introduction_to_graph_theory.tex}
+\subimport*{Introduction_to_graph_theory/}{Introduction_to_graph_theory}
 
-\input{./Introduction_to_Tree_Depth/Introduction_to_Tree-Depth.tex}
+\subimport*{Introduction_to_Tree_Depth/}{Introduction_to_Tree-Depth}
 
 \end{document}
