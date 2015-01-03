@@ -17,7 +17,9 @@ The closure of a rooted forest F, expressed as C = clos(F), is defined as follow
 
 \subsection{Tree Depth}
 
-\paragraph{Definition:}The tree-depth td(G) of a graph G is the minimum height of a rooted forest F such that G $\subseteq$ clos(F)
+\begin{definition}
+The tree-depth td(G) of a graph G is the minimum height of a rooted forest F such that G $\subseteq$ clos(F)
+\end{definition}
 
 \begin{figure}[H]
 \input{3d-cube-ET.tex}
@@ -31,7 +33,17 @@ The tree depth of a graph G is a numerical invariant of a graph. In other words,
 An elimination tree Y of a connected graph G is defined recursively as follows:
 \begin{itemize}
   \item If V(G) = \{x\} then Y is just \{x\}.
-  \item Otherwise, r $\in$ V(G) is chosen as the root of Y and an elimination tree is created for each component of G-r. r will be connected to the root of each of these trees.
+  \item Otherwise, r $\in$ V(G) is chosen as the root of Y and an elimination tree is created for each component of G $-$ r. r will be connected to the root of each of these trees.
 \end{itemize}
 The tree T in Figure~\ref{fig:3d-cube} is an elimination tree for the graph G.
+
+\begin{lemma}
+\label{lema:min-ET}
+Let G be a graph and T a tree such that G $\subseteq$ clos(T). Then, Y exists, where Y is an elimination tree of G and height(Y) $\leq$ height(T).
+\end{lemma}
+
+\begin{proof}
+@TODO
+\end{proof}
+
 \paragraph{} 
