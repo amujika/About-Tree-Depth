@@ -1,0 +1,22 @@
+\section{Game Theoretic approach to Tree-Depth}
+
+\subsection{Definition of the game}
+\paragraph{}
+The k-step selection-deletion game is played by Alice and Bob on a graph G. The game is played by turns as follows:
+\begin{itemize}
+  \item First, Alice selects a connected component of the graph, and the rest of the components are deleted.
+  \item Then, Bob deletes a node from the remaining graph.
+\end{itemize}
+
+If Bob deletes the last node at the k-th round or earlier, he is said to win the k-round selection-deletion game. Otherwise, Alice wins.
+
+\begin{lemma}
+Let G be a graph and let Y be a rooted forest of height at most t such that G $\subseteq$ clos(Y). Then Bob has a winning strategy for the (t+1)-selection deletion game.
+\end{lemma}
+\begin{proof}
+We will proof this by induction on the height of Y.
+\begin{itemize}
+  \item Base case: If height(Y) = 0, then every component of G will have a single vertex, so it's clear that Bob will win in the 1-step selection-deletion game.
+  \item Induction: 
+\end{itemize}
+\end{proof}
