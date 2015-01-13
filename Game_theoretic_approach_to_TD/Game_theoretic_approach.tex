@@ -8,15 +8,18 @@ The k-step selection-deletion game is played by Alice and Bob on a graph G. The 
   \item Then, Bob deletes a node from the remaining graph.
 \end{itemize}
 
-If Bob deletes the last node at the k-th round or earlier, he is said to win the k-round selection-deletion game. Otherwise, Alice wins.
+If Bob deletes the last node at the k-th round or earlier, he is said to win the k-step selection-deletion game. Otherwise, Alice wins.
 
 \begin{lemma}
-Let G be a graph and let Y be a rooted forest of height at most t such that G $\subseteq$ clos(Y). Then Bob has a winning strategy for the (t+1)-selection deletion game.
+Let G be a graph and let F be a rooted forest of height at most t such that G $\subseteq$ clos(F). Then Bob has a winning strategy for the (t+1)-step selection-deletion game.
 \end{lemma}
 \begin{proof}
+Because of lemma~\ref{lema:min-ET} we know an elimination forest Y exists where height(Y) $\leq$ height(F).
 We will proof this by induction on the height of Y.
 \begin{itemize}
-  \item Base case: If height(Y) = 0, then every component of G will have a single vertex, so it's clear that Bob will win in the 1-step selection-deletion game.
-  \item Induction: 
+  \item \textbf{Base case}: If height(Y) = 0, then every component of G will have a single vertex, so it's clear that Bob will win in the 1-step selection-deletion game.
+  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is a component of Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq height(Y)$. Bob will delete the root of $Y_i$
+  
+  Assume we have a winning strategy for Bob in t steps for every graph that is contained in an elimination forest of height t-1.
 \end{itemize}
 \end{proof}
