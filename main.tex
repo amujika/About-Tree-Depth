@@ -3,7 +3,7 @@
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{import}
-\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 
@@ -14,8 +14,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\newenvironment{proof}[1][Proof]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
 \newenvironment{definition}[1][Definition]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 \newenvironment{example}[1][Example]{\begin{trivlist}
@@ -23,19 +22,15 @@
 \newenvironment{remark}[1][Remark]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 
-\newcommand{\qed}{\nobreak \ifvmode \relax \else
-      \ifdim\lastskip<1.5em \hskip-\lastskip
-      \hskip1.5em plus0em minus0.5em \fi \nobreak
-      \vrule height0.75em width0.5em depth0.25em\fi}
 
 \begin{document}
 
-\subimport*{Title/}{title}
+\subimport{Title/}{title}
 	
-\subimport*{Introduction_to_graph_theory/}{Introduction_to_graph_theory}
+\subimport{Introduction_to_graph_theory/}{Introduction_to_graph_theory}
 
-\subimport*{Introduction_to_Tree_Depth/}{Introduction_to_Tree-Depth}
+\subimport{Introduction_to_Tree_Depth/}{Introduction_to_Tree-Depth}
 
-\subimport*{Game_theoretic_approach_to_TD/}{Game_theoretic_approach}
+\subimport{Game_theoretic_approach_to_TD/}{Game_theoretic_approach}
 
 \end{document}
