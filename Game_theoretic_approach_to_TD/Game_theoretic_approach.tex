@@ -16,7 +16,7 @@ Let G be a graph and let F be a rooted forest of height at most t such that G $\
 \end{lemma}
 \begin{proof}
 Because of lemma~\ref{lema:min-ET} we know an elimination forest Y exists such that height(Y) $\leq$ height(F).
-We will proof this by induction on the height of Y.
+We will proof this by induction over the height of Y.
 \begin{itemize}
   \item \textbf{Base case}: If height(Y) = 0, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
   \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination tree belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq height(Y) \leq t$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the sons of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination trees are built. As $height(Y') \leq t-1$, we can assume by induction that Bob has a winning strategy in t rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the (t+1)-step selection-deletion game on the graph G.
@@ -25,3 +25,28 @@ $\qed$
 \end{proof}
 
 \subsection{Alice's winning strategy}
+\begin{definition}
+A shelter S in a graph G is a partially ordered set with the next properties:
+\begin{itemize}
+  \item $\forall U \in S$, $U \subseteq G$ and $U$ is connected.
+  \item $U < V$ if and only if $U \subset V$ and $\nexists W$ such that $W \neq U$ and $U \subset W \subset V$.
+  \item If $U \in S$ and $U$ is not minimal, then $\forall v \in V(U), \exists W$ such that $W \subseteq (U-v)$ and $W < U$.
+\end{itemize}
+\end{definition}
+
+\begin{figure}[H]
+\input{shelter-example.tex}
+\caption{An example of a shelter. \label{fig:shelter-example}}
+\end{figure}
+The thickness of a shelter is the minimal height of a leaf in that shelter. The thickness of figure~\ref{fig:shelter-example} is 1.
+\begin{lemma}
+Let G be a graph, S a shelter in G, and t the thickness of S. Then, S encodes a winning strategy for Alice in the t-step selection-deletion game.
+\end{lemma}
+\begin{proof}
+We will proof this by induction over t.
+\begin{itemize}
+  \item \textbf{Base case}: If t = 0, then clearly Alice wins the 0-step selection-deletion game.
+  \item \textbf{Induction}: 
+\end{itemize}
+$\qed$
+\end{proof}
