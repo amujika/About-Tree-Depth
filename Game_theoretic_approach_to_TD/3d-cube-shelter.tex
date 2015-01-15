@@ -1,0 +1,74 @@
+\usetikzlibrary{arrows}
+\begin{tikzpicture}
+ 
+\node [circle, fill] (v3) at (-2.5,2.5) {};
+\node [circle, fill] (v2) at (-4.5,2.5) {};
+\node [circle, fill] (v1) at (-4.5,4.5) {};
+\node [circle, fill] (v4) at (-2.5,4.5) {};
+\node [circle, fill] (v5) at (-4,4) {};
+\node [circle, fill] (v8) at (-3,4) {};
+\node [circle, fill] (v6) at (-4,3) {};
+\node [circle, fill] (v7) at (-3,3) {};
+\node [circle, fill] (v10) at (-4.5,0.5) {};
+ 
+ 
+\node [circle, fill] (v9) at (-4,0) {};
+\node [circle, fill] (v12) at (-4,-1) {};
+\node [circle, fill] (v11) at (-4.5,-1.5) {};
+\node [circle, fill] (v13) at (-3,-1) {};
+\node [circle, fill] (v14) at (-2.5,-1.5) {};
+ 
+\node [circle, fill] (v16) at (0,4) {};
+\node [circle, fill] (v17) at (1,4) {};
+\node [circle, fill] (v18) at (2,4) {};
+\node [circle, fill] (v19) at (3,4) {};
+ 
+ 
+\draw  (-3.5,-0.5) ellipse (2 and 1.5);
+\draw  (-3.5,3.5) ellipse (2 and 1.5);
+ 
+\node [circle, fill] (v15) at (4,4) {};
+\draw  (v18) ellipse (2.5 and 0.5);
+ 
+\node [circle, fill] (v30) at (1.5,1.5) {};
+\node [circle, fill] (v29) at (2.5,1.5) {};
+\node [circle, fill] (v20) at (2,-0.5) {};
+\draw  (2,1.5) ellipse (1 and 0.5);
+\draw  (v20) ellipse (0.5 and 0.5);
+\node (v21) at (-3.5,2) {};
+\node (v22) at (-3.5,1) {};
+\node (v23) at (-2,0.5) {};
+\node (v24) at (1,3.5) {};
+\node (v25) at (2,3.5) {};
+\node (v26) at (2,2) {};
+\node (v27) at (2,1) {};
+\node (v28) at (2,0) {};
+\draw [-open triangle 45] (v21) edge (v22);
+\draw [-open triangle 45] (v23) edge (v24);
+\draw [-open triangle 45] (v25) edge (v26);
+\draw [-open triangle 45] (v27) edge (v28);
+\draw  (v1) edge (v5);
+\draw  (v5) edge (v6);
+\draw  (v6) edge (v2);
+\draw  (v2) edge (v1);
+\draw  (v1) edge (v4);
+\draw  (v4) edge (v8);
+\draw  (v8) edge (v5);
+\draw  (v6) edge (v7);
+\draw  (v7) edge (v8);
+\draw  (v3) edge (v7);
+\draw  (v2) edge (v3);
+\draw  (v4) edge (v3);
+\draw  (v16) edge (v17);
+\draw  (v18) edge (v17);
+\draw  (v19) edge (v18);
+\draw  (v19) edge (v15);
+\draw  (v29) edge (v30);
+\draw  (v10) edge (v11);
+\draw  (v9) edge (v12);
+\draw  (v14) edge (v11);
+\draw  (v10) edge (v9);
+\draw  (v13) edge (v12);
+\draw  (v14) edge (v13);
+\draw  (v12) edge (v11);
+\end{tikzpicture}
