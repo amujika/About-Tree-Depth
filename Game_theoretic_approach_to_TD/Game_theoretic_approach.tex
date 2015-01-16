@@ -8,19 +8,21 @@ The k-step selection-deletion game is played by Alice and Bob on a graph G. The 
   \item Then, Bob deletes a node from the remaining graph and the next round is played with this graph.
 \end{itemize}
 
-If Bob deletes the last node at the k-th round or earlier, he is said to win the k-step selection-deletion game. Otherwise, Alice wins. 
+If Bob deletes the last node at the k-th round or earlier, he is said to win the k-step selection-deletion game. Otherwise, Alice wins.
+\paragraph{}
+From this definition we can observe that if Bob has a strategy to win in k rounds that strategy will also guaranty a win in any game that lasts more than k rounds. Conversely, if Alice has a winning strategy in k-rounds, that same strategy will also win any game with less than k rounds.
 
 \subsection{Bob's winning strategy}
 \begin{lemma}
-Let G be a graph and let F be a rooted forest of height at most t such that G $\subseteq$ clos(F). Then Bob has a winning strategy for the (t+1)-step selection-deletion game.
+Let G be a graph and let F be a rooted forest of height t such that G $\subseteq$ clos(F). Then, Bob has a winning strategy for the (t+1)-step selection-deletion game.
 \label{lemma:Bob-win}
 \end{lemma}
 \begin{proof}
 Because of lemma~\ref{lema:min-ET} we know an elimination forest Y exists such that height(Y) $\leq$ height(F).
-We will proof this by induction over the height of Y.
+Consider h = height(Y), we will proof that Y encodes a winning strategy in h+1 rounds which is also a winning strategy in the t+1-step selection-deletion game because h $\leq$ t.
 \begin{itemize}
-  \item \textbf{Base case}: If height(Y) = 0, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
-  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination tree belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq height(Y) \leq t$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the sons of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination trees are built. As $height(Y') \leq t-1$, we can assume by induction that Bob has a winning strategy in t rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the (t+1)-step selection-deletion game on the graph G.
+  \item \textbf{Base case}: If h = 0, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
+  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination tree belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq h$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the children of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination trees are built. As $height(Y') \leq h-1$, we can assume by induction that Bob has a winning strategy in h rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the (h+1)-step selection-deletion game on the graph G.
 \end{itemize}
 \end{proof}
 
@@ -29,8 +31,8 @@ We will proof this by induction over the height of Y.
 A shelter S in a graph G is a partially ordered set with the next properties:
 \begin{itemize}
   \item $\forall H \in S$, $H \subseteq G$ and $H$ is connected.
-  \item $H < V$ if and only if $H \subset V$.
-  \item If $H \in S$ and $H$ is not minimal, then $\forall v \in V(H), \exists H'$ such that $H' = H - v$ and $H$ covers $H'$.
+  \item $H \leq M$ if and only if $H \subseteq M$.
+  \item If $H \in S$ and $H$ is not minimal, then $\forall v \in V(H)$, there exists $H' \subseteq H - v$ such that $H$ covers $H'$. In a partially ordered set $a$ covers $b$ means that $a \neq b$, $a \geq b$, and no c exists such that $c \neq a \neq b$ and $a \geq c \geq b$.
 \end{itemize}
 \end{definition}
 
@@ -38,7 +40,7 @@ A shelter S in a graph G is a partially ordered set with the next properties:
 \input{shelter-example.tex}
 \caption{An example of a shelter. The arrows represent the covering relation. \label{fig:shelter-example}}
 \end{figure}
-The thickness of a shelter S is the shortest chain from a maximal element in S to a minimal element in S. The thickness of the shelter in figure~\ref{fig:shelter-example} is 1.
+The thickness of a shelter S is the shortest chain from a maximal element in S to a minimal element in S. The length of a chain is defined as the number of elements in it minus one. The thickness of the shelter in figure~\ref{fig:shelter-example} is 1, because of the chain $\left\{ 1, 2, 3, 4\right\} \geq \left\{4\right\}$.
 \begin{lemma}
 Let G be a graph, S a shelter in G, and t the thickness of S. Then, S encodes a winning strategy for Alice in the t-step selection-deletion game.
 \label{lemma:Alice-win}
@@ -47,7 +49,7 @@ Let G be a graph, S a shelter in G, and t the thickness of S. Then, S encodes a 
 We will proof this by induction over t.
 \begin{itemize}
   \item \textbf{Base case}: If t = 0, then clearly Alice wins the 0-step selection-deletion game.
-  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex v that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, and \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume $S'$ encodes a winning strategy in t-1 steps.
+  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex $v$ that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, and \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume $S'$ encodes a winning strategy in t-1 steps, which together with the strategy for the first round we have just defined is a winning strategy for the t-step selection-deletion game.
 \end{itemize}
 \end{proof}
 
@@ -59,17 +61,19 @@ It is clear that if Alice has a winning strategy in the t-step selection deletio
 \begin{theorem}
 Let G be a graph, S a shelter in G of thickness x and F a rooted forest of height y such that G $\subseteq$ clos(F). Then the following is true.
 \begin{enumerate}
-\item Every rooted forest who's closure contains G has an height higher than or equal to x.
-\item Every shelter in G has a thickness smaller than or equal to y.
-\item $x \leq td(G) \leq y$.
+\item Alice has a winning strategy in the t-step selection-deletion game, for any t smaller than or equal to x.
+\item Bob has a winning strategy in the (t+1)-step selection-deletion game, for any t greater than or equal to y.
+\item Every rooted forest who's closure contains G has an height higher than or equal to x. Otherwise, Bob would have a winning strategy in the x-step selection-deletion game, which contradicts statement 1.
+\item Every shelter in G has a thickness smaller than or equal to y. Otherwise, Alice would have a winning strategy in the (y+1)-step selection-deletion game, which contradicts statement 2.
+\item Because we have F, $td(G) \leq y$. Also, from statement 3 it is clear that $x \leq td(G)$. So we can say that $x \leq td(G) \leq y$.
 \end{enumerate}
 \end{theorem}
 
 \paragraph{}
-With this theorem we can now proof the exact value of the tree-depth of a graph, instead of just an upper bound.
+With this theorem we can now give an upper-bound and a lower-bound to a graphs tree depth.
 
 \begin{figure}[H]
 \input{3d-cube-shelter.tex}
-\caption{This is a shelter of thickness 4 for the graph in Figure~\ref{fig:3d-cube}. Beware that not all graphs in the shelter are drawn, but every graph in it is homomorphic to these. With this and the rooted forest from Figure~\ref{fig:3d-cube} we can say that td(G) = 4. 
+\caption{This is a shelter of thickness 4 for the graph in Figure~\ref{fig:3d-cube}. Beware that not all graphs in the shelter are drawn, but every graph in the shelter is isomorphic to these. With this and the rooted forest from Figure~\ref{fig:3d-cube} we can say that td(G) = 4. 
 \label{fig:3d-cube-shelter}}
 \end{figure}
