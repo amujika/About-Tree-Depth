@@ -1,0 +1,43 @@
+\section{Cycle rank}
+
+\subsection{Defining cycle rank}
+
+\paragraph{}
+Cycle rank is a numerical invariant in a directed graph which is closely related to the tree depth of an undirected graph.
+\begin{definition}
+The cycle rank of a digraph G, denoted by r(G) is defined as follows:
+
+\begin{itemize}
+\item If G is acyclic, then r(G) = 0.
+\item If G is strongly connected and E $\neq \emptyset$, then r(G) = 1 + $min_{v \in V(G)} \left\{r(G-v)\right\}$.
+\item If G is not strongly connected, then r(G) is the maximum cycle rank among all strongly connected components of G.
+\end{itemize}
+
+The E $\neq \emptyset$ condition is necessary because the graph with a single vertex and no edges is both acyclic and strongly connected.
+
+\end{definition}
+
+\subsection{Directed elimination tree}
+
+\paragraph{}
+Similar to the notion of elimination trees in undirected graphs, we have directed elimination trees on digraphs.
+
+\begin{definition}
+
+A directed elimination tree for a nontrivially strongly connected digraph G = (V, E) is a rooted tree $T = (\nabla, \xi)$. T can be defined recursively as follows:
+
+\begin{itemize}
+\item (v, V) is the root of T for some v $\in$ V.
+\item For every nontrivially strongly connected component in G - v, $Y_1, \ldots, Y_j$ a directed elimination tree for G[$Y_i$] is created for every $1 \leq i \leq j$. The roots of these trees are conneced to the root of T.
+\end{itemize}
+
+\end{definition}
+
+We can extend the concept of directed elimination trees to directed elimination forests. For a digraph G with k $\geq$ 0 nontrivially strongly connected components $C_1, \ldots, C_k$, a rooted forest is the union of the rooted trees of G[$C_i$] for 1 $\leq$ i $\leq$ k.
+
+\begin{lemma}
+The minimum height among all directed elimination forests for G equals the cycle rank of G.
+\end{lemma}
+\begin{proof}
+content...
+\end{proof}
