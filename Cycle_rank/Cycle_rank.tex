@@ -10,7 +10,7 @@ The cycle rank of a digraph G, denoted by r(G) is defined as follows:
 \begin{itemize}
 \item If G is acyclic, then r(G) = 0.
 \item If G is strongly connected and E $\neq \emptyset$, then r(G) = 1 + $min_{v \in V(G)} \left\{r(G-v)\right\}$.
-\item If G is not strongly connected, then r(G) is the maximum cycle rank among all strongly connected components of G.
+\item If G is not strongly connected and contains at least a cycle, then r(G) is the maximum cycle rank among all strongly connected components of G.
 \end{itemize}
 
 The E $\neq \emptyset$ condition is necessary because the graph with a single vertex and no edges is both acyclic and strongly connected.
@@ -30,14 +30,23 @@ A directed elimination tree for a nontrivially strongly connected digraph G = (V
 \item (v, V) is the root of T for some v $\in$ V.
 \item For every nontrivially strongly connected component in G - v, $Y_1, \ldots, Y_j$ a directed elimination tree for G[$Y_i$] is created for every $1 \leq i \leq j$. The roots of these trees are conneced to the root of T.
 \end{itemize}
-
+\label{definition:DET}
 \end{definition}
 
 We can extend the concept of directed elimination trees to directed elimination forests. For a digraph G with k $\geq$ 0 nontrivially strongly connected components $C_1, \ldots, C_k$, a rooted forest is the union of the rooted trees of G[$C_i$] for 1 $\leq$ i $\leq$ k.
 
+\begin{observation}
+In the second step of the definition~\ref{definition:DET}, what we actually do is creating a directed elimination forest for G-v and connect its roots to (v, V).
+\label{observation:eforest}
+\end{observation}
+
 \begin{lemma}
-The minimum height among all directed elimination forests for G equals the cycle rank of G.
+Let F be directed elimination forests of minimum height for a digraph G = (V, E). Then, r(G) = height(F). 
 \end{lemma}
 \begin{proof}
-content...
+We will proof this by induction on the number of vertices of G.
+\begin{itemize}
+  \item \textbf{Base case}: If G is acyclic, then r(G) = 0, height(F) is obviously 0 because F is the null graph. We consider the null graph acyclic.
+  \item \textbf{Induction}: If G is nontrivially strongly connected, then v $\in$ V exists, such that r(G) = 1 + r(G-v). Let (v, V) be the root of F, then height(F) = 1 + height(F') where F' is a directed elimination forest of G-v because of observation~\ref{observation:eforest}. By induction we can assume that r(G-v) equals the minimun height of a directed elimination forest F'
+\end{itemize}
 \end{proof}
