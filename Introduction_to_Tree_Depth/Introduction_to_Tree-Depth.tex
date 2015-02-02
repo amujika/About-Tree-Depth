@@ -23,23 +23,20 @@ The tree-depth td(G) of a graph G is the minimum height of a rooted forest F suc
 
 \begin{figure}[H]
 \input{3d-cube-ET.tex}
-\caption{The graph G and tree T are in the left and right respectively. The doted edges in T, represent the clos(T). Because G $\subseteq$ clos(T), height(T) = 4 and the definition of tree depth we just gave, we know that td(G) is at most 4.\label{fig:3d-cube}}
+\caption{The graph G and tree T are in the left and right respectively. The doted edges in T, represent the clos(T). Because G $\subseteq$ clos(T), height(T) = 4 and the definition of tree depth we just gave, we know that td(G) is at most~4.\label{fig:3d-cube}}
 \end{figure}
 \paragraph{}
-The tree depth of a graph G is a numerical invariant of a graph. In other words, the tree depth is a property that depends only  on the abstract structure of a graph, not in its representation.	
+The tree depth of a graph G is a numerical invariant of a graph. In other words, the tree depth is a property that depends only  on the abstract structure of a graph, not on its representation.	
 
 \subsection{Elimination Forest}
 \paragraph{}
-An elimination forest F of a connected graph G is defined recursively as follows:
+An elimination forest F of a connected graph G = (V, E) is defined recursively as follows:
 \begin{itemize}
-  \item If V(G) = \{x\} then F is just \{x\}.
+  \item If V = \{x\} then F is just \{x\}.
   \item If G is not connected, then F is the union of the elimination forests of each component of G.
-  \item Otherwise, r $\in$ V(G) is chosen as the root of F and an elimination forest is created for G $-$ r. The roots of this elimination forest will be the children of r in F.
+  \item Otherwise, r $\in$ V is chosen as the root of F and an elimination forest is created for G $-$ r. The roots of this elimination forest will be the children of r in F.
 \end{itemize}
 The tree T in Figure~\ref{fig:3d-cube} is an elimination forest for the graph G.
-
-\paragraph{}
-The concept of an elimination forest is deeply related to that of tree depth and we will use some lemmas to prove so.
 
 \begin{lemma}
 \label{lema:min-ET}

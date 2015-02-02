@@ -2,7 +2,7 @@
 
 \subsection{Defining the game}
 \paragraph{}
-The k-step selection-deletion game is played by Alice and Bob on a graph G. The game is played by turns as follows:
+The k-step selection-deletion game is played by Alice and Bob on a graph. The game is played by turns as follows:
 \begin{itemize}
   \item First, Alice selects a connected component of the graph, and the rest of the components are deleted.
   \item Then, Bob deletes a node from the remaining graph and the next round is played with this graph.
@@ -28,7 +28,7 @@ Consider h = height(Y), we will proof that Y encodes a winning strategy in h+1 r
 
 \subsection{Alice's winning strategy}
 \begin{definition}
-A shelter S in a graph G is a partially ordered set with the next properties:
+A shelter S in a graph G is a partially ordered set of graphs with the next properties:
 \begin{itemize}
   \item $\forall H \in S$, $H \subseteq G$ and $H$ is connected.
   \item $H \leq M$ if and only if $H \subseteq M$.
