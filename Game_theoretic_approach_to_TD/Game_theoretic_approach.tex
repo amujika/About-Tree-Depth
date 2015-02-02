@@ -49,7 +49,7 @@ Let G be a graph, S a shelter in G, and t the thickness of S. Then, S encodes a 
 We will proof this by induction over t.
 \begin{itemize}
   \item \textbf{Base case}: If t = 0, then clearly Alice wins the 0-step selection-deletion game.
-  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex $v$ that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, and \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume $S'$ encodes a winning strategy in t-1 steps, which together with the strategy for the first round we have just defined is a winning strategy for the t-step selection-deletion game.
+  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex $v$ that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, \wedge \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume $S'$ encodes a winning strategy in t-1 steps, which together with the strategy for the first round we have just defined is a winning strategy for the t-step selection-deletion game.
 \end{itemize}
 \end{proof}
 
