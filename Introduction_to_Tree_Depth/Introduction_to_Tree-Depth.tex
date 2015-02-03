@@ -23,7 +23,7 @@ The tree-depth td(G) of a graph G is the minimum height of a rooted forest F suc
 
 \begin{figure}[H]
 \input{3d-cube-ET.tex}
-\caption{The graph G and tree T are in the left and right respectively. The doted edges in T, represent the clos(T). Because G $\subseteq$ clos(T), height(T) = 4 and the definition of tree depth we just gave, we know that td(G) is at most~4.\label{fig:3d-cube}}
+\caption{The graph G and tree T are in the left and right respectively. The doted edges in T, represent the clos(T). Because G $\subseteq$ clos(T), height(T) = 5 and the definition of tree depth we just gave, we know that td(G) is at most~5.\label{fig:3d-cube}}
 \end{figure}
 \paragraph{}
 The tree depth of a graph G is a numerical invariant of a graph. In other words, the tree depth is a property that depends only  on the abstract structure of a graph, not on its representation.	
@@ -44,10 +44,10 @@ Let G be a graph and F a rooted forest such that G $\subseteq$ clos(F). Then, Y 
 \end{lemma}
 
 \begin{proof}
-  \item \textbf{Base case}: If V(G) = \{v\}, then V(Y) = \{v\} and height(Y) = 0. Beware that F can have nodes that are not in G, so height(Y) $\leq$ height(F).
+  \item \textbf{Base case}: If V(G) = \{v\}, then V(Y) = \{v\} and height(Y) = 1. Beware that F can have nodes that are not in G but it must contain v, so height(Y) $\leq$ height(F).
   \item \textbf{Induction}: If G is connected, set the root of F, v, as the root of Y. Clearly, G-v $\subseteq$ clos(F-v), so by induction an elimination forest Y' exists such that G-v $\subseteq$ clos(Y') and height(Y') $\leq$ height(F-v). The roots of Y' will be the children of v in Y and as G-v $\subseteq$ clos(Y'), then G $\subseteq$ clos(Y) and Y is an elimination forest. With that we can prove the lemma like this: height(Y) = 1 + height(Y') $\leq$ 1 + height(F-v) = height(F), so height(Y) $\leq$ height(F).
   
-  If G is not connected, then every component $G_i$ in G is contained in the closure of a component $F_i$ in F. Otherwise, the edge between two adjacent nodes in G that are both in $G_i$ but in two diferent components of F wouldn't be in clos(F). By induction we can assume that for every component $G_i$, there exists an elimination forest $Y_i$ such that $G_i \subseteq$ clos($Y_i$) and height($Y_i$) $\leq$ height($F_i$). Y will be the union of all these $Y_i$ which is clearly an elimination forest and because for every component of F there exists a component in Y with smaller or equal height, then height(Y) $\leq$ height(F).
+  If G is not connected, then every component $G_i$ in G is contained in the closure of a component $F_i$ in F. Otherwise, the edge between two adjacent nodes in G that are both in $G_i$ but in two diferent components of F wouldn't be in clos(F) and that can't happen. By induction we can assume that for every component $G_i$, there exists an elimination forest $Y_i$ such that $G_i \subseteq$ clos($Y_i$) and height($Y_i$) $\leq$ height($F_i$). Y will be the union of all these $Y_i$ which is clearly an elimination forest and because for every component of F there exists a component in Y with smaller or equal height, then height(Y) $\leq$ height(F).
 \end{proof}
 
 \paragraph{}

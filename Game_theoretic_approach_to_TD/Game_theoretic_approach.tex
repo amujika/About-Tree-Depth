@@ -2,33 +2,33 @@
 
 \subsection{Defining the game}
 \paragraph{}
-The k-step selection-deletion game is played by Alice and Bob on a graph. The game is played by turns as follows:
+For k $\geq$ 0, the k-step selection-deletion game is played by Alice and Bob on a graph. The game is played by turns as follows:
 \begin{itemize}
   \item First, Alice selects a connected component of the graph, and the rest of the components are deleted.
   \item Then, Bob deletes a node from the remaining graph and the next round is played with this graph.
 \end{itemize}
 
-If Bob deletes the last node at the k-th round or earlier, he is said to win the k-step selection-deletion game. Otherwise, Alice wins.
+If Bob deletes the last node at the k-th round or earlier, he is said to win. Otherwise, Alice wins.
 \paragraph{}
-From this definition we can observe that if Bob has a strategy to win in k rounds that strategy will also guaranty a win in any game that lasts more than k rounds. Conversely, if Alice has a winning strategy in k-rounds, that same strategy will also win any game with less than k rounds.
+From this definition we can observe that if Bob has a strategy to win in k rounds that strategy will also guarantee a win in any game that lasts more than k rounds. Conversely, if Alice has a winning strategy in k-rounds, that same strategy will also win any game with less than k rounds.
 
 \subsection{Bob's winning strategy}
 \begin{lemma}
-Let G be a graph and let F be a rooted forest of height t such that G $\subseteq$ clos(F). Then, Bob has a winning strategy for the (t+1)-step selection-deletion game.
+Let G be a graph and let F be a rooted forest of height t such that G $\subseteq$ clos(F). Then, Bob has a winning strategy for the t-step selection-deletion game.
 \label{lemma:Bob-win}
 \end{lemma}
 \begin{proof}
 Because of lemma~\ref{lema:min-ET} we know an elimination forest Y exists such that height(Y) $\leq$ height(F).
-Consider h = height(Y), we will proof that Y encodes a winning strategy in h+1 rounds which is also a winning strategy in the t+1-step selection-deletion game because h $\leq$ t.
+Consider h = height(Y), we will prove that a winning strategy exists in h rounds which is also a winning strategy in the t-step selection-deletion game because h $\leq$ t.
 \begin{itemize}
-  \item \textbf{Base case}: If h = 0, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
-  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination tree belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq h$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the children of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination trees are built. As $height(Y') \leq h-1$, we can assume by induction that Bob has a winning strategy in h rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the (h+1)-step selection-deletion game on the graph G.
+  \item \textbf{Base case}: If h = 1, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
+  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination tree belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq h$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the children of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination trees are built. As $height(Y') \leq h-1$, we can assume by induction that Bob has a winning strategy in h-1 rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the h-step selection-deletion game on the graph G.
 \end{itemize}
 \end{proof}
 
 \subsection{Alice's winning strategy}
 \begin{definition}
-A shelter S in a graph G is a partially ordered set of graphs with the next properties:
+A shelter S in a graph G is a set of graphs with the next properties:
 \begin{itemize}
   \item $\forall H \in S$, $H \subseteq G$ and $H$ is connected.
   \item $H \leq M$ if and only if $H \subseteq M$.
@@ -42,14 +42,14 @@ A shelter S in a graph G is a partially ordered set of graphs with the next prop
 \end{figure}
 The thickness of a shelter S is the shortest chain from a maximal element in S to a minimal element in S. The length of a chain is defined as the number of elements in it minus one. The thickness of the shelter in figure~\ref{fig:shelter-example} is 1, because of the chain $\left\{ 1, 2, 3, 4\right\} \geq \left\{4\right\}$.
 \begin{lemma}
-Let G be a graph, S a shelter in G, and t the thickness of S. Then, S encodes a winning strategy for Alice in the t-step selection-deletion game.
+Let G be a graph, S a shelter in G, and t the thickness of S. Then, there exists a winning strategy for Alice in the t-step selection-deletion game.
 \label{lemma:Alice-win}
 \end{lemma}
 \begin{proof}
 We will proof this by induction over t.
 \begin{itemize}
   \item \textbf{Base case}: If t = 0, then clearly Alice wins the 0-step selection-deletion game.
-  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex $v$ that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, \wedge \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume $S'$ encodes a winning strategy in t-1 steps, which together with the strategy for the first round we have just defined is a winning strategy for the t-step selection-deletion game.
+  \item \textbf{Induction}: Let H be a maximal element in S. Then, Alice picks the connected component $G_i$ of $G$, such that $H \subseteq G_i$. Because t $>$ 0, H is not minimal, so for any vertex $v$ that Bob removes, if $v \in H$ there exists $H' \in S$ that is covered by H and $v \notin H'$. Otherwise, $H$ is still a subgraph of $G_i - v$. Let $S' =\left\{X \mid X \in S \, \wedge \, X \subseteq G_i - v\right\}$. It is clear that $S'$ is a shelter for $G_i - v$ and that the thickness of $S'$ is greater than or equal to t-1. By induction we can assume Alice has a winning strategy in t-1 steps in $G_i - v$, which together with the strategy for the first round we have just defined is a winning strategy for the t-step selection-deletion game.
 \end{itemize}
 \end{proof}
 
