@@ -2,14 +2,33 @@
 
 \subsection{Definition of a graph}
 \paragraph{}
-A graph is defined as a pair of sets G = (V, E), such that E $\subseteq$ $V^2$. The members of V are called vertices and the ones of E edges. Take into account, that the vertices can be anything, they can even be sets themselves. The usual way to draw a graph is by representing the vertices as individual points and for each edge, draw a link between both elements of that edge. The shape in which a graph is drawn is irrelevant, it will contain the same information.
+A graph is defined as a pair of sets G = (V, E), such that E $\subseteq$ $\left\{\{a, b\} \mid a,b \in V\right\}$. The members of V are called vertices and the ones of E edges. Take into account, that the vertices can be anything, they can even be sets themselves. The usual way to draw a graph is by representing the vertices as individual points and for each edge, draw a link between both elements of that edge. The shape in which a graph is drawn is irrelevant, it will contain the same information.
 
 \begin{figure}[h]
 \input{introduction-graph.tex}
 \caption{A graph with V = \{A, B, C, D, E, F\} and E = \{\{A, B\}, \{A, D\}, \{B, D\}, \{B, C\}, \{D, E\}\}}
 \end{figure}
 
-\subsection{Connectivity}
-\paragraph{}
-An essential concept in graph theory is adjacency. Two vertices x, y $\in$ V are said to be adjacent in G if and only if \{x, y\} $\in$ E.
+\subsection{Definitions for undirected graphs}
+For a graph G = (V, E).
+\begin{description}
+ \item[Adjacency] \hfill \\
+  a, b $\in$ V are said to be adjacent in G if \{a, b\} $\in$ E.
+ \item[Path] \hfill \\
+  A path $a_1, a_2, \ldots, a_n$ is a series of vertices in V such that if $2 \leq i \leq n$, then $a_{i-1}$ is adjacent to $a_i$. n is the length of such a path.
+ \item[Cycle] \hfill \\
+  A cycle is a path of the form a, $\ldots$, a of length greater than 1.
+ \item[Subgraph] \hfill \\
+ G' is a subgraph of G, expressed as G' $\subseteq$ G, if V(G') $\subseteq$ V(G) and E(G') $\subseteq$ E(G).
+ \item[Connected component] \hfill \\
+  A connected component G' of G is a subgraph of G such that a path exists between any two vertices of G' and no H exists such that G' $\subseteq$ H and H is a connected component.
+  \item[Tree] \hfill \\ 
+  A tree is a graph with a single connected component and no cycle.
+  \item[Forest] \hfill \\
+  A forest is a graph such that every connected component is a tree.
+  \item[Rooted Tree] \hfill \\ 
+  A rooted tree is a tree with a special node that is called the root.
+  \item[Rooted Forest] \hfill \\ 
+  A rooted forest is a graph such that every connected component is a rooted tree.
+\end{description}
 
