@@ -19,9 +19,9 @@ For a graph G = (V, E).
  \item[Cycle] \hfill \\
   A cycle is a path of the form a, $\ldots$, a of length greater than 1.
  \item[Subgraph] \hfill \\
- G' is a subgraph of G, expressed as G' $\subseteq$ G, if V(G') $\subseteq$ V(G) and E(G') $\subseteq$ E(G).
+ G' is a subgraph of G, expressed as G' $\subseteq$ G, if V(G') $\subseteq$ V(G) and E(G') $\subseteq$ E(G). G' $\subset$ G means that G' $\subseteq$ G but V(G') $\neq$ V(G) or E(G') $\neq$ E(G).
  \item[Connected component] \hfill \\
-  A connected component G' of G is a subgraph of G such that a path exists between any two vertices of G' and no H exists such that G' $\subseteq$ H and H is a connected component.
+  A connected component G' of G is a subgraph of G such that a path exists between any two vertices of G' and no H exists such that G' $\subset$ H and H is a connected component.
   \item[Tree] \hfill \\ 
   A tree is a graph with a single connected component and no cycle.
   \item[Forest] \hfill \\
@@ -30,5 +30,9 @@ For a graph G = (V, E).
   A rooted tree is a tree with a special node that is called the root.
   \item[Rooted Forest] \hfill \\ 
   A rooted forest is a graph such that every connected component is a rooted tree.
+  \item[Height of a node] \hfill \\ 
+  The height of a node in a rooted tree is the lenght of the path from that node to the root. The height of the root itself is 1. In a rooted forest, the height of a node is its height in the rooted tree it belongs to.
+  \item[Height of rooted forest] \hfill \\ 
+  The height of a rooted forest is the maximum height of any of its nodes.
 \end{description}
 
