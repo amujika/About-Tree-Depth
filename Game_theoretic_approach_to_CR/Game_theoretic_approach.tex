@@ -1,4 +1,4 @@
-\section{Game Theoretic approach to Cycle Rank}
+\section{Game Characterization of Cycle Rank}
 
 \subsection{Definitions}
 \paragraph{}
@@ -26,4 +26,16 @@ X $\in$ V* is a prefix of Y $\in$ V*, denoted by X$\preceq$Y  if Z $\in$ V* exis
 For a string S = $a_1, \ldots, a_n$, $\{|S|\}$ denotes the set $\{a_1, \ldots, a_n\}$.
 \item[Symmetric difference] \hfill \\
 For two sets A and B their symetric difference, expressed like A$\Delta$B is (A$\cup$B)\textbackslash (A $\cap$B).
+\end{description}
+
+\subsection{Game description}
+\paragraph{}
+We will use a cops and robbers game played on a graph G, where the cops will try to catch a robber. In each step of the game the cops can either place a searcher on a node or remove only the most recently placed searcher. This is why it's called a LIFO search. The different variants of the game depend on whether on not the robber is invisible and if he can move only in strongly connected components or in any directed paths.
+
+For a digraph G, the state of the game is described by a pair (X, R). X $\in$ V* is the position of the cops and the order in which they were added. The meaning of R depends on the game variant we are talking about, but it will always be an induced subgraph of G\textbackslash \{$|$X$|$\}. We will introduce the 4 game variants now:
+\begin{description}
+\item[Invisible] \hfill \\
+The position of the robber is unknown, so R represents all possible places where the robber may be. R is a succesor closed in G\textbackslash \{$|$X$|$\}.
+\item[Invisible strongly connected component] \hfill \\
+The position of the robber is unknown, so R represents all possible places where the robber may be. R
 \end{description}
