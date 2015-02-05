@@ -22,7 +22,7 @@ Because of lemma~\ref{lema:min-ET} we know an elimination forest Y exists such t
 Consider h = height(Y), we will prove that a winning strategy exists in h rounds which is also a winning strategy in the t-step selection-deletion game because h $\leq$ t.
 \begin{itemize}
   \item \textbf{Base case}: If h = 1, then every component of G will have a single vertex, so it's clear that Bob will win the 1-step selection-deletion game.
-  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination forest belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously $height(Y_i) \leq h$. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the children of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination forests are built. As $height(Y') \leq h-1$, we can assume by induction that Bob has a winning strategy in h-1 rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the h-step selection-deletion game on the graph G.
+  \item \textbf{Induction}: Let $G_i \subseteq G$ be the component Alice chooses, then $Y_i$ exists such that $Y_i$ is an elimination forest belonging to Y, $G_i \subseteq clos(Y_i)$ and obviously height($Y_i$) $\leq$ h. Bob will delete v, the root of $Y_i$. This will leave us with $G' = G_i - v$ as the new graph. If we consider the children of v the new roots in $Y' = Y_i - v$, then $G' \subseteq clos(Y')$ because of how the elimination forests are built. As $height(Y') \leq$ h-1, we can assume by induction that Bob has a winning strategy in h-1 rounds for $G'$, which together with the strategy for the first round we have just defined makes a winning strategy for Bob in the h-step selection-deletion game on the graph G.
 \end{itemize}
 \end{proof}
 
@@ -33,7 +33,7 @@ A shelter $S$ in a graph $G$ is a set of graphs with the next properties:
   \item $\forall H \in S$, $H \subseteq G$ and $H$ is connected.
   \item $H$ is said to be minimal if no $H'$ exists in $S$ such that $H' \subset H$.
   \item $H$ is said to be maximal if no $H'$ exists in $S$ such that $H \subset H'$.
-  \item If $H \in S$ and $H$ is not minimal, then $\forall v \in V(H)$, there exists $H' \subseteq H - v$ such that $H$ covers $H'$. We will say that $a \in S$ covers $b \in S$ if and only if $a \neq b$, $b \subset a$, and no $c \in S$ exists such that $c \neq a \neq b$ and $b \subset c \subset a$.
+  \item If $H \in S$ and $H$ is not minimal, then $\forall v \in V(H)$, there exists $H' \subseteq H - v$ such that $H$ covers $H'$. We will say that $a \in S$ covers $b \in S$ if and only if $b \subset a$, and no $c \in S$ exists such that $b \subset c \subset a$.
 \end{itemize}
 \end{definition}
 

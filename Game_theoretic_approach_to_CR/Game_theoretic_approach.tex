@@ -1,0 +1,29 @@
+\section{Game Theoretic approach to Cycle Rank}
+
+\subsection{Definitions}
+\paragraph{}
+For this section, we will assume all our graphs are directed and contain no self loops. We will also need some basic definitions before we can start talking about the games we will use to define cycle rank.
+\begin{description}
+ \item[Initial component] \hfill \\
+H $\subseteq$ G is an initial component of G if H is a strongly connected component and there are no edges from G\textbackslash H to H.
+ \item[Successor-closed] \hfill \\
+H $\subseteq$ G is an successor-closed of G if H is there are no edges from H to G\textbackslash H.
+\item[Power set] \hfill \\
+The power set of a set S, denoted by $\mathcal{P}$(S), is the set of all possible subsets of S.
+\item[String] \hfill \\
+A string is a sequencce of elements $a_1, \ldots, a_n$ such that all $a_i$ belong to the same set. That set is called the alphabet.
+\item[Length] \hfill \\
+The lenght of a string  A = $a_1, \ldots, a_n$, denoteb by $|$A$|$ is n. The lenght of the empty string is 0.
+\item[Concatenation] \hfill \\
+The concatenation of two string A =  $a_1, \ldots, a_n$ and B =  $b_1, \ldots, b_k$, denoted by A$\cdot$B is $a_1, \ldots, a_n,b_1, \ldots, b_k$
+\item[V*] \hfill \\
+V* is the set of all possible finite words over the set V, including the empty word.
+\item[V$^{<k}$] \hfill \\
+V$^{<k}$ is the set of all possible finite words over the set V of lenght smaller than k.
+\item[Prefix] \hfill \\
+X $\in$ V* is a prefix of Y $\in$ V*, denoted by X$\preceq$Y  if Z $\in$ V* exists such that Y = X$\cdot$Z.
+\item[String to set] \hfill \\
+For a string S = $a_1, \ldots, a_n$, $\{|S|\}$ denotes the set $\{a_1, \ldots, a_n\}$.
+\item[Symmetric difference] \hfill \\
+For two sets A and B their symetric difference, expressed like A$\Delta$B is (A$\cup$B)\textbackslash (A $\cap$B).
+\end{description}

@@ -10,12 +10,12 @@ A graph is defined as a pair of sets G = (V, E), such that E $\subseteq$ $\left\
 \end{figure}
 
 \subsection{Definitions for undirected graphs}
-For a graph G = (V, E).
+For a graph G, V(G) is its vertex set and E(G) its edge set.
 \begin{description}
  \item[Adjacency] \hfill \\
-  a, b $\in$ V are said to be adjacent in G if \{a, b\} $\in$ E.
+  a, b $\in$ V(G) are said to be adjacent in G if \{a, b\} $\in$ E(G).
  \item[Path] \hfill \\
-  A path $a_1, a_2, \ldots, a_n$ is a series of vertices in V such that if $2 \leq i \leq n$, then $a_{i-1}$ is adjacent to $a_i$. n is the length of such a path.
+  A path $a_1, a_2, \ldots, a_n$ is a series of vertices in V(G) such that if $2 \leq i \leq n$, then $a_{i-1}$ is adjacent to $a_i$ in G. n is the length of such a path.
  \item[Cycle] \hfill \\
   A cycle is a path of the form a, $\ldots$, a of length greater than 1.
  \item[Subgraph] \hfill \\

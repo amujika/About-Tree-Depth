@@ -9,7 +9,7 @@ The cycle rank of a digraph G, denoted by r(G) is defined as follows:
 
 \begin{itemize} 
 \item If G is acyclic, then r(G) = 0.
-\item If G is nontrivially strongly connected, then r(G) = 1 + $min_{v \in V(G)} \left\{r(G-v)\right\}$.
+\item If G is nontrivial strongly connected, then r(G) = 1 + $min_{v \in V(G)} \left\{r(G-v)\right\}$.
 \item If G is not strongly connected and contains at least a cycle, then r(G) is the maximum cycle rank among all nontrivial strongly connected components of G.
 \end{itemize}
 
@@ -24,7 +24,7 @@ Similar to the notion of elimination forests in undirected graphs, we have direc
 
 \begin{definition}
 
-A directed elimination forest for a digraph G is a rooted forest $F = (\nabla, \xi)$. F can be defined recursively as follows:
+A directed elimination forest for a digraph G is a rooted forest F. F can be defined recursively as follows:
 
 \begin{itemize}
 \item For the k $\geq$ 0 non trivially strongly connected components of G, $Y_1, \ldots, Y_k$, ($v_i$, $Y_i$) are the roots in F, where $v_i \in Y_i$ and 1 $\leq$ i $\leq$ k.
@@ -34,14 +34,14 @@ A directed elimination forest for a digraph G is a rooted forest $F = (\nabla, \
 \end{definition}
 
 \begin{lemma}
-Let F be directed elimination forests of minimum height for a digraph G = (V, E). Then, r(G) = 1 + height(F). 
+Let F be directed elimination forests of minimum height for a digraph G = (V, E). Then, r(G) = height(F). 
 \end{lemma}
 \begin{proof}
 We will proof this by induction on the number of vertices of G.
 \begin{itemize}
-  \item \textbf{Base case}: If G is acyclic, then r(G) = 0, height(F) is -1 because we assume that the height of the empty tree is -1.
-  \item \textbf{Induction}: If G is nontrivially strongly connected, then v $\in$ V exists, such that r(G) = 1 + r(G-v). Let (v, V) be the root of F, then height(F) = 1 + height(F') where F' is any directed elimination forest of G-v because of definition~\ref{definition:DET}. If we consider F' to be the directed elimination forest of G-v of minimum height, by induction we can assume that r(G-v) = 1 + height(F'). So, r(G) = 1 + r(G-v) = 2 + height(F') = 1 + height(F).
+  \item \textbf{Base case}: If G is acyclic, then r(G) = 0, height(F) is 0 because we assume that the height of the empty tree is 0.
+  \item \textbf{Induction}: If G is nontrivially strongly connected, then v $\in$ V exists, such that r(G) = 1 + r(G-v). Let (v, V) be the root of F, then height(F) = 1 + height(F') where F' is any directed elimination forest of G-v because of definition~\ref{definition:DET}. If we consider F' to be the directed elimination forest of G-v of minimum height, by induction we can assume that r(G-v) = 1 + height(F'). So, r(G) = 1 + r(G-v) = 1 + height(F') = height(F).
   
-  If G is not strongly connected but it has at least a cycle, then, for every X that is a strongly connected component of G by induction we can assume that r(G[X]) = 1 + height($F_X$) where $F_X$ is the directed elimination tree of minimum height for G[X]. Because r(G) is the maximum among all r(G[X]) and the height(F) is the maximum among all height($F_X$), r(G) = 1 + height(F).
+  If G is not strongly connected but it has at least a cycle, then, for every X that is a strongly connected component of G by induction we can assume that r(G[X]) = height($F_X$) where $F_X$ is the directed elimination tree of minimum height for G[X]. Because r(G) is the maximum among all r(G[X]) and the height(F) is the maximum among all height($F_X$), r(G) = height(F).
 \end{itemize}
 \end{proof}
