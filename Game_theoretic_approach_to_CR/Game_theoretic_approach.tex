@@ -86,3 +86,11 @@ There are three trivial relations.
 \end{itemize}
 With this we can build the following figure. The arrows go from the bigger numbers to the smaller ones. The dotted arrows, represent the relations we have to proof to proof the theorem.
 \end{proof}
+
+\begin{lemma}
+For any digraph G, LIFO$^{vsc}$(G) $\geq$ SS$^{vsc}$(G).
+\end{lemma}
+\begin{proof}
+Consider $\phi$ the function that defines the winning strategy which uses the least amount of searchers for a vsc-game. We will prove that $\phi$ must be searcher stationary by contradiction. 
+Let $(X_i, R_i)$ be the first vsc-position such that $X_{i+1} = \phi (X_i, R_i) \preceq X_i$. Let $(X_{i-1}, R_{i-1})$ be the previous position of $(X_i, R_i)$. As it is a LIFO search  $X_{i-1} = X_{i+1}$ obviously. From the definition of a successor we made for vsc, we know that  $R_{i-1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i-1}|\} \cap \{|X_i|\}|)$. Also, $R_{i+1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_i|\}|)$. Because $X_{i-1} = X_{i+1}$, all R are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_{i-1}|\} \cap \{|X_i|\}|)$ and because R must be a single strongly connected component $R_{i-1} = R_{i+1}$, so $(X_{i-1}, R_{i-1}) = (X_{i+1}, R_{i+1})$ which is a cycle $\phi$ and consequently once the $(X_{i-1}, R_{i-1})$ position is arrived the cops can't win, thus $\phi$ is not a winning strategy.
+\end{proof}
