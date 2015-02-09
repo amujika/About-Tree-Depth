@@ -29,13 +29,60 @@ For two sets A and B their symetric difference, expressed like A$\Delta$B is (A$
 \end{description}
 
 \subsection{Game description}
-\paragraph{}
-We will use a cops and robbers game played on a graph G, where the cops will try to catch a robber. In each step of the game the cops can either place a searcher on a node or remove only the most recently placed searcher. This is why it's called a LIFO search. The different variants of the game depend on whether on not the robber is invisible and if he can move only in strongly connected components or in any directed paths.
+\paragraph{Informal definition}
+We will use a cops and robbers game played on a graph G, where the cops will try to catch a robber. In each step of the game the cops can either place a searcher on a node or remove only the most recently placed searcher. This is why it's called a LIFO search. The cops win if the manage to place a cop in the same node where the robber is.
 
-For a digraph G, the state of the game is described by a pair (X, R). X $\in$ V* is the position of the cops and the order in which they were added. The meaning of R depends on the game variant we are talking about, but it will always be an induced subgraph of G\textbackslash \{$|$X$|$\}. We will introduce the 4 game variants now:
+The are four variants of the game depending on how the robber moves. 
 \begin{description}
-\item[Invisible] \hfill \\
-The position of the robber is unknown, so R represents all possible places where the robber may be. R is a succesor closed in G\textbackslash \{$|$X$|$\}.
-\item[Invisible strongly connected component] \hfill \\
-The position of the robber is unknown, so R represents all possible places where the robber may be. R
+\item[Invisible - i] \hfill \\
+The cops don't know the position where the robber is located and he can move along directed paths in G that contain no cops.
+\item[Visible - v] \hfill \\
+The cops know the position where the robber is located and he can move along directed paths in G that contain no cops.
+\item[Invisible strongly connected - isc] \hfill \\
+The cops don't know the position where the robber is located and he can only move inside the same strongly connected component of G that contain no cops.
+\item[Visible strongly connected - isc] \hfill \\
+The cops know the position where the robber is located and he can only move inside the same strongly connected component of G that contain no cops.
 \end{description}
+
+\paragraph{Formal definition}
+For a digraph G, the state of the game is described by a pair (X, R). X $\in$ V* is the position of the cops and the order in which they were added. R is an induced subgraph of G\textbackslash \{$|$X$|$\}. In the invisible variants, R represents where the robber may be, while in the visible variants its means which nodes can the robber reach. We will define the valid positions for each game variant.
+
+\begin{description}
+\item[i-position] \hfill \\
+R is succesor closed in G\textbackslash \{$|$X$|$\}. If R wouldn't be succesor closed the robber would have an edge without cops which he could use to scape R and R wouldn't represent all possible positions of the robber.
+\item[v-position] \hfill \\
+R is succesor closed in G\textbackslash \{$|$X$|$\} and $v \in$ V(R) exists such that a directed path exist from $v$ to any other node in V(R).
+\item[isc-position] \hfill \\
+R is a union of strongly connected components of G\textbackslash \{$|$X$|$\}.
+\item[vsc-position] \hfill \\
+R is a strongly connected component of G\textbackslash \{$|$X$|$\}.
+\end{description}
+
+Let ($X$, $R$) be the current state of the game and ($X'$, $R'$) a valid succesor (a possible next turn). Then, $| \{|X|\} \Delta \{|X'|\}| = 1$ and $|X|\preceq |X'|$ or $|X'|\preceq |X|$. R is defined differently for different game variants.
+\begin{itemize}
+\item For the i and v variants, for every $v' \in V(R')$ there is a directed path from a $v \in V(R)$ to $v'$ in G $\setminus (\{|X|\} \cap \{|X'|\}|).$
+\item For the isc and vsc variants, for every $v' \in V(R')$ there is a $v \in V(R)$ such that $v$ and $v'$ are contained in the same strongly connected component of G $\setminus (\{|X|\} \cap \{|X'|\}|).$
+\end{itemize}
+
+The initial state of a game in the invisible variants is clearly ($\epsilon$, G). In the visible variants this is not necessarily a valid position, so the initial state will be any valid position of the form ($\epsilon$, R). A strategy for the cops is a function that given a game state (X, R) returns X', the position the cops must take in the next turn. A strategy is said to be a winning strategy if no matter which moves the robber makes the strategy reaches a state of the form (X, $\emptyset$) from any possible initial state.
+
+\paragraph{}
+For every previously mentioned game variants we can create a new monotone variant (mi, mv, misc, mvsc). The monotone variant of each game is equal to the non monote one, except that for every position (X$_i$, $R_i$) and its succesor (X$_{i+1}$, $R_{i+1}$), $R_{i+1}$ is a subgraph of $R_i$. 
+
+\paragraph{}
+We are interested in the minimum number of cops necessary to capture the robber. For any game variant, gv, we will call LIFO$^{gv}$(G) the minimum number of cops needed to capture a robber in G in that game variant. We will also define one more game called searcher stationary vsc, which is equal to the LIFO vsc but for every $X_i$,$X_i \prec X_{i+1}$, i.e, searches can only be added, not removed. SS$^{vsc}$ will be the minimum number of searchers needed in this strategy.
+
+\begin{theorem}
+For any digraph G the same number of cops are needed to capture a robber in every game variant and that number is equal to the cycle rank of G plus 1:
+
+1 + r(G) = LIFO$^{mi}$(G) = LIFO$^{i}$(G) = LIFO$^{misc}$(G) = LIFO$^{isc}$(G) = LIFO$^{mv}$(G) = LIFO$^{v}$(G) = LIFO$^{mvsc}$(G) = LIFO$^{vsc}$(G) = SS$^{vsc}$(G).
+\end{theorem}
+\begin{proof}
+There are three trivial relations.
+\begin{itemize}
+\item Every monotone winning strategy is also a winning strategy in the non monote variant of that same game.
+\item Every winning strategy for an invisible game variant is also a winning strategy for the visible variant of that same game.
+\item Every winning strategy for when the robber is not restricted to only move in strongly connected components is also winning when the robber is restricted to only move in strongly connected components.
+\end{itemize}
+With this we can build the following figure. The arrows go from the bigger numbers to the smaller ones. The dotted arrows, represent the relations we have to proof to proof the theorem.
+\end{proof}
