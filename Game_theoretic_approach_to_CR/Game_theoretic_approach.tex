@@ -94,3 +94,21 @@ For any digraph G, LIFO$^{vsc}$(G) $\geq$ SS$^{vsc}$(G).
 Consider $\phi$ the function that defines the winning strategy which uses the least amount of searchers for a vsc-game. We will prove that $\phi$ must be searcher stationary by contradiction. 
 Let $(X_i, R_i)$ be the first vsc-position such that $X_{i+1} = \phi (X_i, R_i) \preceq X_i$. Let $(X_{i-1}, R_{i-1})$ be the previous position of $(X_i, R_i)$. As it is a LIFO search  $X_{i-1} = X_{i+1}$ obviously. From the definition of a successor we made for vsc, we know that  $R_{i-1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i-1}|\} \cap \{|X_i|\}|)$. Also, $R_{i+1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_i|\}|)$. Because $X_{i-1} = X_{i+1}$, all R are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_{i-1}|\} \cap \{|X_i|\}|)$ and because R must be a single strongly connected component $R_{i-1} = R_{i+1}$, so $(X_{i-1}, R_{i-1}) = (X_{i+1}, R_{i+1})$ which is a cycle $\phi$ and consequently once the $(X_{i-1}, R_{i-1})$ position is arrived the cops can't win, thus $\phi$ is not a winning strategy.
 \end{proof}
+\begin{lemma}
+For any digraph G, SS$^{vsc}$(G) $\geq$ 1 + r(G).
+\end{lemma}
+\begin{proof}
+We will prove this by induction over the number of vertices of G.
+\begin{enumerate}
+  \item If $|$V(G)$|$ = 1, SS$^{vsc}$(G) = 1 + r(G). \\
+  PROOF: A cop in the single node of G will always capture the robber and G must be acyclic, so r(G) = 0 by definition.
+  \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, SS$^{vsc}$(G') $\geq$ 1 + r(G'). \\
+  PROOF: Induction hypothesis, we can assume it because 1.
+  \item If G is not strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G)
+  \begin{enumerate}[label*=\arabic*.]
+    \item G has k $\geq$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, V($H_I$) $<$ V(G). \\
+    PROOF: In 3 we assume G is not strongly connected.
+    \item 
+  \end{enumerate}
+\end{enumerate}
+\end{proof}
