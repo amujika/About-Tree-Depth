@@ -106,9 +106,30 @@ We will prove this by induction over the number of vertices of G.
   PROOF: Induction hypothesis, we can assume it because 1.
   \item If G is not strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G)
   \begin{enumerate}[label*=\arabic*.]
-    \item G has k $\geq$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, V($H_I$) $<$ V(G). \\
-    PROOF: In 3 we assume G is not strongly connected.
-    \item 
+    \item G has k $\geq$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, $|$V($H_I$)$| < |$V(G)$|$. \\
+    PROOF: In 3 we assume G is not strongly connected and G has at least two nodes.
+    
+    \item SS$^{vsc}$(G) equals the maximum SS$^{vsc}$($H_i$) such that $H_i$ is a strongly connected component of G. \\
+    PROOF: SS$^{vsc}$(G) must have a winning strategy for each strongly connected component
+    
+    \item $\max_{H_i}$ SS$^{vsc}$($H_i$) $\geq$  $\max_{H_i}$ (1 + r($H_i$)). \\
+    PROOF: By 2.
+    
+    \item SS$^{vsc}$(G) = $\max_{H_i}$ SS$^{vsc}$($H_i$) $\geq$  $\max_{H_i}$ (1 + r($H_i$)) = 1 + r(G). \\
+    PROOF: The first equality by 3.2. The second inequality by 3.3. The last one by definition of cycle rank.
   \end{enumerate}
+  \item If G is strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G) 
+  \begin{enumerate}[label*=\arabic*.]
+    \item Let $\phi$ be a minimal strategy, that uses SS$^{vsc}$(G) cops and v = \{$|\phi$($\epsilon$, G)$|$\}. \\
+    PROOF: By 4, ($\epsilon$, G) is the initial state, so v exists.
+    
+    \item SS$^{vsc}$(G) = 1 + SS$^{vsc}$(G - v). \\
+    PROOF: By 4.1 $\phi$ must be a winning strategy for SS$^{vsc}$(G - v) in SS$^{vsc}$(G)-1 steps.
+    
+    \item SS$^{vsc}$(G) = 1 + SS$^{vsc}$(G - v) $\geq$ 2 + r(G-v) $\geq$ 1 + r(G). \\
+    PROOF: The first equality by 4.2. The second inequality by 2. The last one is by the definition of cycle rank, as r(G) is the smallest r(G-u) + 1, then 1+ r(G-u) $\geq$ r(G) for any u $\in$ V(G).
+  \end{enumerate}
+  \item Q.E.D. \\
+  PROOF: By 1, 2, 3 and 4.
 \end{enumerate}
 \end{proof}
