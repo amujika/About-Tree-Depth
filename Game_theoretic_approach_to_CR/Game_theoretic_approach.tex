@@ -107,7 +107,7 @@ We will prove this by induction over the number of vertices of G.
   \item If G is not strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G)
   \begin{enumerate}[label*=\arabic*.]
     \item G has k $\geq$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, $|$V($H_I$)$| < |$V(G)$|$. \\
-    PROOF: In 3 we assume G is not strongly connected and G has at least two nodes.
+    PROOF: In 3 we assume G is not strongly connected.
     
     \item SS$^{vsc}$(G) equals the maximum SS$^{vsc}$($H_i$) such that $H_i$ is a strongly connected component of G. \\
     PROOF: SS$^{vsc}$(G) must have a winning strategy for any strongly connected component the robber may start in.
@@ -139,19 +139,27 @@ We will prove this by induction over the number of vertices of G.
 \end{lemma}
 \begin{proof}
 We will prove this by induction over the number of vertices of G.
-\begin{itemize}
+\begin{enumerate}
   \item If $|$V(G)$|$ = 1, LIFO$^{mi}$(G) = 1 + r(G) = 1. \\
   PROOF: A cop in the single node of G will always capture the robber and G is acyclic, so r(G) = 0 by definition.
   \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, 1 + r(G') $\geq$ LIFO$^{mi}$(G'). \\
   PROOF: Induction hypothesis.
   \item If G is strongly connected, 1 + r(G) $\geq$ LIFO$^{mi}$(G).
-  \begin{itemize}
+  \begin{enumerate}[label*=\arabic*.]
     \item v $\in$ V(G) exists, such that r(G) = 1+ r(G-v). \\
     PROOF: By definition of cycle rank.
     \item 1 + LIFO$^{mi}$(G-v) $\geq$ LIFO$^{mi}$(G). \\
-    PROOF: Otherwise, we can place the first cop in v, never remove it and win the game in G using 1 +  
+    PROOF: We can place a cop in v in the first step of the game, never remove it and win the game in G using 1 + LIFO$^{mi}$(G-v) cops.
     \item  1 + r(G) = 2 + r(G-v) $\geq$ 1 + LIFO$^{mi}$(G-v) $\geq$ LIFO$^{mi}$(G)
     PROOF: By 3.1, 2 and 3.2
-  \end{itemize}
-\end{itemize}
+  \end{enumerate}
+  \item If G is not strongly connected, 1 + r(G) $\geq$ LIFO$^{mi}$(G).
+  \begin{enumerate}[label*=\arabic*.]
+    \item G has k $\geq$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, $|$V($H_i$)$| < |$V(G)$|$. \\
+    PROOF: In 4 we assume G is not strongly connected.
+    \item An ordering $H_1, \ldots, H_k$ exists such that there is no edge from $H_j$ to $H_i$ if $j > i$. \\
+    PROOF: Otherwise, a path exists from a vertex in $H_i$ to that same vertex, containing nodes not in $H_i$. Thus, $H_i$ is not a strongly connected component. 
+    \item If the robber is not in any $H_i$ with i $\leq$ k
+  \end{enumerate}
+\end{enumerate}
 \end{proof}
