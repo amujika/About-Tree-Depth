@@ -100,8 +100,8 @@ For any digraph G, SS$^{vsc}$(G) $\geq$ 1 + r(G).
 \begin{proof}
 We will prove this by induction over the number of vertices of G.
 \begin{enumerate}
-  \item If $|$V(G)$|$ = 1, SS$^{vsc}$(G) = 1 + r(G). \\
-  PROOF: A cop in the single node of G will always capture the robber and G must be acyclic, so r(G) = 0 by definition.
+  \item If $|$V(G)$|$ = 1, SS$^{vsc}$(G) = 1 + r(G) = 1. \\
+  PROOF: A cop in the single node of G will always capture the robber and G is acyclic, so r(G) = 0 by definition.
   \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, SS$^{vsc}$(G') $\geq$ 1 + r(G'). \\
   PROOF: Induction hypothesis, we can assume it because 1.
   \item If G is not strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G)
@@ -110,10 +110,10 @@ We will prove this by induction over the number of vertices of G.
     PROOF: In 3 we assume G is not strongly connected and G has at least two nodes.
     
     \item SS$^{vsc}$(G) equals the maximum SS$^{vsc}$($H_i$) such that $H_i$ is a strongly connected component of G. \\
-    PROOF: SS$^{vsc}$(G) must have a winning strategy for each strongly connected component
+    PROOF: SS$^{vsc}$(G) must have a winning strategy for any strongly connected component the robber may start in.
     
     \item $\max_{H_i}$ SS$^{vsc}$($H_i$) $\geq$  $\max_{H_i}$ (1 + r($H_i$)). \\
-    PROOF: By 2.
+    PROOF: By 2 and 3.1.
     
     \item SS$^{vsc}$(G) = $\max_{H_i}$ SS$^{vsc}$($H_i$) $\geq$  $\max_{H_i}$ (1 + r($H_i$)) = 1 + r(G). \\
     PROOF: The first equality by 3.2. The second inequality by 3.3. The last one by definition of cycle rank.
@@ -124,12 +124,34 @@ We will prove this by induction over the number of vertices of G.
     PROOF: By 4, ($\epsilon$, G) is the initial state, so v exists.
     
     \item SS$^{vsc}$(G) = 1 + SS$^{vsc}$(G - v). \\
-    PROOF: By 4.1 $\phi$ must be a winning strategy for SS$^{vsc}$(G - v) in SS$^{vsc}$(G)-1 steps.
+    PROOF: By 4.1 $\phi$ must be a winning strategy for SS$^{vsc}$(G - v) using SS$^{vsc}$(G)-1 cops.
     
     \item SS$^{vsc}$(G) = 1 + SS$^{vsc}$(G - v) $\geq$ 2 + r(G-v) $\geq$ 1 + r(G). \\
     PROOF: The first equality by 4.2. The second inequality by 2. The last one is by the definition of cycle rank, as r(G) is the smallest r(G-u) + 1, then 1+ r(G-u) $\geq$ r(G) for any u $\in$ V(G).
   \end{enumerate}
   \item Q.E.D. \\
-  PROOF: By 1, 2, 3 and 4.
+  PROOF: By 3 and 4.
 \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+1 + r(G) $\geq$ LIFO$^{mi}$(G)
+\end{lemma}
+\begin{proof}
+We will prove this by induction over the number of vertices of G.
+\begin{itemize}
+  \item If $|$V(G)$|$ = 1, LIFO$^{mi}$(G) = 1 + r(G) = 1. \\
+  PROOF: A cop in the single node of G will always capture the robber and G is acyclic, so r(G) = 0 by definition.
+  \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, 1 + r(G') $\geq$ LIFO$^{mi}$(G'). \\
+  PROOF: Induction hypothesis.
+  \item If G is strongly connected, 1 + r(G) $\geq$ LIFO$^{mi}$(G).
+  \begin{itemize}
+    \item v $\in$ V(G) exists, such that r(G) = 1+ r(G-v). \\
+    PROOF: By definition of cycle rank.
+    \item 1 + LIFO$^{mi}$(G-v) $\geq$ LIFO$^{mi}$(G). \\
+    PROOF: Otherwise, we can place the first cop in v, never remove it and win the game in G using 1 +  
+    \item  1 + r(G) = 2 + r(G-v) $\geq$ 1 + LIFO$^{mi}$(G-v) $\geq$ LIFO$^{mi}$(G)
+    PROOF: By 3.1, 2 and 3.2
+  \end{itemize}
+\end{itemize}
 \end{proof}
