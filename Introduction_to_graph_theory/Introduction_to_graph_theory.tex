@@ -1,12 +1,12 @@
-\section{Introduction to Graph Theory}
+\chapter{Introduction to Graph Theory}
 
 \subsection{Definition of a graph}
 \paragraph{}
-A graph is defined as a pair of sets G = (V, E), such that E $\subseteq$ $\left\{\{a, b\} \mid a,b \in V\right\}$. The members of V are called vertices and the ones of E edges. Take into account, that the vertices can be anything, they can even be sets themselves. The usual way to draw a graph is by representing the vertices as individual points and for each edge, draw a link between both elements of that edge. The shape in which a graph is drawn is irrelevant, it will contain the same information.
+A graph is defined as a pair of sets G = (V, E), such that E $\subseteq$ $\left\{\{a, b\} \mid a \neq b \wedge a,b \in V\right\}$. The members of V are called vertices and the ones of E edges. Take into account, that the vertices can be anything, they can even be sets themselves. The usual way to draw a graph is by representing the vertices as individual points and for each edge, draw a link between both elements of that edge. The shape in which a graph is drawn is irrelevant, it will contain the same information.
 
 \begin{figure}[h]
 \input{introduction-graph.tex}
-\caption{A graph with V = \{A, B, C, D, E, F\} and E = \{\{A, B\}, \{A, D\}, \{B, D\}, \{B, C\}, \{D, E\}\}}
+\caption{A graph with V = \{a, b, c, d, e, f\} and E = \{\{a, b\}, \{a, d\}, \{b, d\}, \{b, c\}, \{d, e\}\}}
 \end{figure}
 
 \subsection{Definitions for undirected graphs}
@@ -23,7 +23,7 @@ For a graph G, V(G) is its vertex set and E(G) its edge set.
  \item[Connected component] \hfill \\
   A connected component G' of G is a subgraph of G such that a path exists between any two vertices of G' and no H exists such that G' $\subset$ H and H is a connected component.
   \item[Tree] \hfill \\ 
-  A tree is a graph with a single connected component and no cycle.
+  A tree is a graph with a single connected component and having no cycle.
   \item[Forest] \hfill \\
   A forest is a graph such that every connected component is a tree.
   \item[Rooted Tree] \hfill \\ 
@@ -32,7 +32,7 @@ For a graph G, V(G) is its vertex set and E(G) its edge set.
   A rooted forest is a graph such that every connected component is a rooted tree.
   \item[Height of a node] \hfill \\ 
   The height of a node in a rooted tree is the lenght of the path from that node to the root. The height of the root itself is 1. In a rooted forest, the height of a node is its height in the rooted tree it belongs to.
-  \item[Height of rooted forest] \hfill \\ 
+  \item[Height of a rooted forest] \hfill \\ 
   The height of a rooted forest is the maximum height of any of its nodes.
 \end{description}
 

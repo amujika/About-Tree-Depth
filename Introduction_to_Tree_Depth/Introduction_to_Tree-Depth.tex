@@ -1,15 +1,17 @@
-\section{Introduction to Tree Depth}
+\chapter{Introduction to Tree Depth}
 
 \subsection{Basic definitions}
 
 \paragraph{}
-Vertex x is said to be the ancestor of y in a rooted forest F, if and only if x belongs to the path between y and the root of the component to which x belongs, y included.
-\paragraph{}
-The closure of a rooted forest F, expressed as C = clos(F), is defined as follows:
+Vertex $x$ is said to be the ancestor of $y$ in a rooted forest $F$, if and only if $x$ belongs to the path between $y$ and the root of the component to which $x$ belongs, $y$ included.
+
+\begin{definition}
+The closure of a rooted forest $F$, expressed as $C$ = clos($F$), is defined as follows:
 \begin{itemize}
-  \item V(C) = V(F)
-  \item E(C) = \{\{x, y\} : x is an ancestor of y in F, x $\neq$ y \}
+  \item V(C) = V($F$)
+  \item E(C) = \{\{$x$, $y$\} : $x \neq y$ and $x$ is an ancestor of $y$ in $F$\}
 \end{itemize}
+\end{definition}
 \begin{figure}[h]
 \input{closure-example.tex}
 \caption{The blue graph at the left is a rooted forest F, the red graph at the right represents clos(F).}
