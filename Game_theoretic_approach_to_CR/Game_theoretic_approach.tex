@@ -4,35 +4,29 @@
 \paragraph{}
 For this section, we will assume all our graphs are directed and contain no self loops. We will also need some basic definitions before we can start talking about the games we will use to define cycle rank.
 \begin{description}
- \item[Initial component] \hfill \\
-H $\subseteq$ G is an initial component of G if H is a strongly connected component and there are no edges from G\textbackslash H to H.
  \item[Successor-closed] \hfill \\
-H $\subseteq$ G is an successor-closed of G if H is there are no edges from H to G\textbackslash H.
-\item[Power set] \hfill \\
-The power set of a set S, denoted by $\mathcal{P}$(S), is the set of all possible subsets of S.
+H $\subseteq$ $G$ is an successor-closed of $G$ if $H$ is there are no edges from $H$ to $G \setminus H$.
 \item[String] \hfill \\
 A string is a sequencce of elements $a_1, \ldots, a_n$ such that all $a_i$ belong to the same set. That set is called the alphabet.
 \item[Length] \hfill \\
-The lenght of a string  A = $a_1, \ldots, a_n$, denoteb by $|$A$|$ is n. The lenght of the empty string is 0.
+The lenght of a string  A = $a_1, \ldots, a_n$, denoted by $|$A$|$ is n. The length of the empty string is 0.
 \item[Concatenation] \hfill \\
 The concatenation of two string A =  $a_1, \ldots, a_n$ and B =  $b_1, \ldots, b_k$, denoted by A$\cdot$B is $a_1, \ldots, a_n,b_1, \ldots, b_k$
 \item[V*] \hfill \\
 V* is the set of all possible finite words over the set V, including the empty word.
-\item[V$^{<k}$] \hfill \\
-V$^{<k}$ is the set of all possible finite words over the set V of lenght smaller than k.
 \item[Prefix] \hfill \\
 X $\in$ V* is a prefix of Y $\in$ V*, denoted by X$\preceq$Y  if Z $\in$ V* exists such that Y = X$\cdot$Z.
 \item[String to set] \hfill \\
 For a string S = $a_1, \ldots, a_n$, $\{|S|\}$ denotes the set $\{a_1, \ldots, a_n\}$.
 \item[Symmetric difference] \hfill \\
-For two sets A and B their symetric difference, expressed like A$\Delta$B is (A$\cup$B)\textbackslash (A $\cap$B).
+For two sets A and B their symmetric difference, expressed as A$\Delta$B is (A$\cup$B)\textbackslash (A $\cap$B).
 \end{description}
 
 \subsection{Game description}
-\paragraph{Informal definition}
-We will use a cops and robbers game played on a graph G, where the cops will try to catch a robber. In each step of the game the cops can either place a searcher on a node or remove only the most recently placed searcher. This is why it's called a LIFO search. The cops win if the manage to place a cop in the same node where the robber is.
+\paragraph{Informal definition:}
+We will use a cops and robbers game played on a graph G, where the cops will try to catch a robber. In each step of the game the cops can either place a cop on a node or remove only the most recently placed one. This is why it's called a LIFO search. The cops win if the manage to place a cop in the same node where the robber is.
 
-The are four variants of the game depending on how the robber moves. 
+The are four variants of the game depending on how the robber moves and which information do the cops have. 
 \begin{description}
 \item[Invisible - i] \hfill \\
 The cops don't know the position where the robber is located and he can move along directed paths in G that contain no cops.
@@ -44,67 +38,72 @@ The cops don't know the position where the robber is located and he can only mov
 The cops know the position where the robber is located and he can only move inside the same strongly connected component of G that contain no cops.
 \end{description}
 
-\paragraph{Formal definition}
-For a digraph G, the state of the game is described by a pair (X, R). X $\in$ V* is the position of the cops and the order in which they were added. R is an induced subgraph of G\textbackslash \{$|$X$|$\}. In the invisible variants, R represents where the robber may be, while in the visible variants its means which nodes can the robber reach. We will define the valid positions for each game variant.
+\paragraph{Formal definition:}
+For a digraph G, the state of the game is described by a pair (X, R). X $\in$ V* is the position of the cops and the order in which they were added. R is an induced subgraph of G\textbackslash \{$|$X$|$\}. In the invisible variants, R represents where the robber may be, while in the visible variants its means which nodes can the robber reach. We will define the valid states for each game variant.
 
 \begin{description}
-\item[i-position] \hfill \\
-R is succesor closed in G\textbackslash \{$|$X$|$\}. If R wouldn't be succesor closed the robber would have an edge without cops which he could use to scape R and R wouldn't represent all possible positions of the robber.
-\item[v-position] \hfill \\
-R is succesor closed in G\textbackslash \{$|$X$|$\} and $v \in$ V(R) exists such that a directed path exist from $v$ to any other node in V(R).
-\item[isc-position] \hfill \\
-R is a union of strongly connected components of G\textbackslash \{$|$X$|$\}.
-\item[vsc-position] \hfill \\
-R is a strongly connected component of G\textbackslash \{$|$X$|$\}.
+\item[i-state] \hfill \\
+R is successor closed in G\textbackslash \{$|X|$\}. If R wouldn't be successor closed the robber would have an edge without cops which he could use to scape R and R wouldn't represent all possible positions of the robber.
+\item[v-state] \hfill \\
+R is successor closed in G\textbackslash \{$|X|$\} and $v \in$ V($R$) exists such that a directed path exist from $v$ to any other node in V($R$).
+\item[isc-state] \hfill \\
+R is a union of strongly connected components of $G \setminus$ \{$|X|$\}.
+\item[vsc-state] \hfill \\
+R is a single strongly connected component of $G \setminus$ \{$|X|$\}.
 \end{description}
 
-Let ($X$, $R$) be the current state of the game and ($X'$, $R'$) a valid succesor (a possible next turn). Then, $| \{|X|\} \Delta \{|X'|\}| = 1$ and $|X|\preceq |X'|$ or $|X'|\preceq |X|$. R is defined differently for different game variants.
+Let ($X$, $R$) be the current state of the game and ($X'$, $R'$) a valid successor (a possible next state). Then, $| \{|X|\} \Delta \{|X'|\}| = 1$ and $|X|\preceq |X'|$ or $|X'|\preceq |X|$. R is defined differently for different game variants.
 \begin{itemize}
-\item For the i and v variants, for every $v' \in V(R')$ there is a directed path from a $v \in V(R)$ to $v'$ in G $\setminus (\{|X|\} \cap \{|X'|\}|).$
-\item For the isc and vsc variants, for every $v' \in V(R')$ there is a $v \in V(R)$ such that $v$ and $v'$ are contained in the same strongly connected component of G $\setminus (\{|X|\} \cap \{|X'|\}|).$
+\item In the i and v variants, for every $v' \in V(R')$ there exists a $v \in V(R)$ such that a path exists from $v$ to $v'$ in $G$ $\setminus (\{|X|\} \cap \{|X'|\}|).$
+\item In the isc and vsc variants, for every $v' \in V(R')$ there exists a $v \in V(R)$ such that $v$ and $v'$ are contained in the same strongly connected component of $G \setminus (\{|X|\} \cap \{|X'|\}|).$
 \end{itemize}
 
-The initial state of a game in the invisible variants is clearly ($\epsilon$, G). In the visible variants this is not necessarily a valid position, so the initial state will be any valid position of the form ($\epsilon$, R). A strategy for the cops is a function that given a game state (X, R) returns X', the position the cops must take in the next turn. A strategy is said to be a winning strategy if no matter which moves the robber makes the strategy reaches a state of the form (X, $\emptyset$) from any possible initial state.
+The initial state of a game in the invisible variants is clearly ($\epsilon$, $G$). In the visible variants this is not necessarily a valid state, so the initial state will be any valid position of the form ($\epsilon$, $R$). A strategy for the cops is a function that given a game state (X, R) returns X', the position the cops will take in the next state. A strategy is said to be a winning strategy if no matter which moves the robber makes the strategy reaches a state of the form (X, $\emptyset$) from any possible initial state.
 
 \paragraph{}
-For every previously mentioned game variants we can create a new monotone variant (mi, mv, misc, mvsc). The monotone variant of each game is equal to the non monote one, except that for every position (X$_i$, $R_i$) and its succesor (X$_{i+1}$, $R_{i+1}$), $R_{i+1}$ is a subgraph of $R_i$. 
+For every previously mentioned game variants we can create a new monotone variant (mi, mv, misc, mvsc). The monotone variant of each game is equal to the non monotone one, except that for every position ($X_i$, $R_i$) and its successor ($X_{i+1}$, $R_{i+1}$), the cops strategy must assure that $R_{i+1}$ is a subgraph of $R_i$ no matter what the robber does. 
 
 \paragraph{}
-We are interested in the minimum number of cops necessary to capture the robber. For any game variant, gv, we will call LIFO$^{gv}$(G) the minimum number of cops needed to capture a robber in G in that game variant. We will also define one more game called searcher stationary vsc, which is equal to the LIFO vsc but for every $X_i$,$X_i \prec X_{i+1}$, i.e, searches can only be added, not removed. SS$^{vsc}$ will be the minimum number of searchers needed in this strategy.
+We are interested in the minimum number of cops necessary to capture the robber. For any game variant, gv $\in$ \{i, v, isc, vsc, mi, mv, misc, mvsc\}, we will call LIFO$^{gv}$(G) the minimum number of cops needed to capture a robber in G in that game variant. We will also define one more game called searcher stationary vsc, which is equal to the LIFO vsc but for every $X_i$,$X_i \prec X_{i+1}$, i.e, cops can only be added, not removed. SS$^{vsc}$ will be the minimum number of cops needed in this strategy.
 
 \begin{theorem}
 For any digraph G the same number of cops are needed to capture a robber in every game variant and that number is equal to the cycle rank of G plus 1:
 
 1 + r(G) = LIFO$^{mi}$(G) = LIFO$^{i}$(G) = LIFO$^{misc}$(G) = LIFO$^{isc}$(G) = LIFO$^{mv}$(G) = LIFO$^{v}$(G) = LIFO$^{mvsc}$(G) = LIFO$^{vsc}$(G) = SS$^{vsc}$(G).
 \end{theorem}
-\begin{proof}
-There are three trivial relations.
+\begin{observation} There are some trivial relations between these games\\
 \begin{itemize}
 \item Every monotone winning strategy is also a winning strategy in the non monote variant of that same game.
 \item Every winning strategy for an invisible game variant is also a winning strategy for the visible variant of that same game.
 \item Every winning strategy for when the robber is not restricted to only move in strongly connected components is also winning when the robber is restricted to only move in strongly connected components.
 \end{itemize}
-With this we can build the following figure. The arrows go from the bigger numbers to the smaller ones. The dotted arrows, represent the relations we have to proof to proof the theorem.
-\end{proof}
+\end{observation}
+
+With this observation we can build the following figure.
+
+\begin{figure}[H]
+\input{Game_hierarchy.tex}
+\caption{The arrows go from the bigger values to the smaller ones. We have the normal arrows from the previous observation. We will prove the doted arrows and that will prove that the lemma holds.}
+\end{figure}
+
 
 \begin{lemma}
 For any digraph G, LIFO$^{vsc}$(G) $\geq$ SS$^{vsc}$(G).
 \end{lemma}
 \begin{proof}
-Consider $\phi$ the function that defines the winning strategy which uses the least amount of searchers for a vsc-game. We will prove that $\phi$ must be searcher stationary by contradiction. 
-Let $(X_i, R_i)$ be the first vsc-position such that $X_{i+1} = \phi (X_i, R_i) \preceq X_i$. Let $(X_{i-1}, R_{i-1})$ be the previous position of $(X_i, R_i)$. As it is a LIFO search  $X_{i-1} = X_{i+1}$ obviously. From the definition of a successor we made for vsc, we know that  $R_{i-1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i-1}|\} \cap \{|X_i|\}|)$. Also, $R_{i+1}$ and $R_i$ are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_i|\}|)$. Because $X_{i-1} = X_{i+1}$, all R are in the same strongly connected component of G $\setminus (\{|X_{i+1}|\} \cap \{|X_{i-1}|\} \cap \{|X_i|\}|)$ and because R must be a single strongly connected component $R_{i-1} = R_{i+1}$, so $(X_{i-1}, R_{i-1}) = (X_{i+1}, R_{i+1})$ which is a cycle $\phi$ and consequently once the $(X_{i-1}, R_{i-1})$ position is arrived the cops can't win, thus $\phi$ is not a winning strategy.
+@@TODO: rewrite it in a similar way to the other lemma's proofs.
 \end{proof}
 \begin{lemma}
-For any digraph G, SS$^{vsc}$(G) $\geq$ 1 + r(G).
+For any digraph G, SS$^{vsc}$(G) $\geq$ 1 + r($G$).
 \end{lemma}
 \begin{proof}
-We will prove this by induction over the number of vertices of G.
+We will prove this by induction over the number of vertices of $G$.
 \begin{enumerate}
-  \item If $|$V(G)$|$ = 1, SS$^{vsc}$(G) = 1 + r(G) = 1. \\
-  PROOF: A cop in the single node of G will always capture the robber and G is acyclic, so r(G) = 0 by definition.
-  \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, SS$^{vsc}$(G') $\geq$ 1 + r(G'). \\
+  \item If $|$V($G$)$|$ = 1, SS$^{vsc}$(G) = 1 + r($G$) = 1. \\
+  PROOF: A cop in the single node of G will always capture the robber and $|$V($G$)$|$ = 1, so r($G$) = 0 by definition.
+  \item Assume that for every G' such that  $|$V(G')$| < |$V(G)$|$, SS$^{vsc}$($G'$) $\geq$ 1 + r($G'$). \\
   PROOF: Induction hypothesis, we can assume it because 1.
-  \item If G is not strongly connected, then SS$^{vsc}$(G) $\geq$ 1 + r(G)
+  \item If G is not strongly connected, then SS$^{vsc}$($G$) $\geq$ 1 + r($G$)
   \begin{enumerate}[label*=\arabic*.]
     \item G has k $>$ 1 strongly connected components $H_1, \ldots, H_k$ and for every $H_i$, $|$V($H_I$)$| < |$V(G)$|$. \\
     PROOF: In 3 we assume G is not strongly connected.
