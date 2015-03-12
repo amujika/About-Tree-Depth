@@ -1,7 +1,7 @@
 \section{Isomorphism}
 \begin{definition}
 Let $G$ be a connected graph, $T$ an elimination tree of minimal height of $G$ and $P = p_1,\ldots, p_n$ a nonempty path in $T$ such that $p_1$ is the root of $T$. For a triple of the form ($G$, $T$, $P$):
- 
+  
 \begin{itemize}
  \item $T_P = \{T_{p1}, \ldots, T_{pk}\}$ is the set of connected trees formed by descendants of $p_n$ in $T$.
  \item $P_1, \ldots, P_k$ will be the paths from the root of T to each of the roots of $T_P$.
@@ -22,16 +22,17 @@ Let ($G, T, P$), ($H, Y, S$) be two triples of the form we have just defined suc
 \end{itemize}
  
 \begin{lemma}
-For two triples ($G, T, P$), ($H, Y, S$), if neither ($G, T, P$) $<$ ($H, Y, S$) nor ($H, Y, S$) $<$ ($G, T, P$), then a function $\phi$ exists such that \{$u$, $v$\} $\in$ E($G_P$) $\iff$ \{$\phi(u)$, $\phi(v)$\} $\in$ E($H_S$) and $\phi(p_i) = \phi(s_i)$.
+For two triples ($G, T, P$), ($H, Y, S$), if neither ($G, T, P$) $<$ ($H, Y, S$) nor ($H, Y, S$) $<$ ($G, T, P$), then a  bijection $\phi$ exists such that $\forall v \in P \cup V(G_P)$ and $\forall u \in V(G_P)$, \{$u$, $v$\} $\in$ E($G$) $\iff$ \{$\phi(u)$, $\phi(v)$\} $\in$ E($H$) and $\phi(p_i) = s_i$.
 \end{lemma}
  
 \begin{proof}
 We will proof this by reverse induction on the size of the paths.
 
-Base case: By the third condition this trivially holds.
+Base case: 
+If $|V(G_P)| = |V(H_S)| = 1$, then there is only one possible $\phi$. This $\phi$ obviously preserves the conditions mentioned in the lemma because of the third condition of the $<$ operator.
 
 Induction:
-By induction $\phi_i$ exists for each component of $G_p - p_n$. This $\phi_i$ must preserve 
+By induction a $\phi_i$ exists from each ($G, T, P_i$) to each ($H, Y, S_i$). We can build a $\phi$ from ($G, T, P$) to ($H, Y, S$) that preserves the conditions mentioned in the Lemma simply by joining the different $\phi_i$.
 \end{proof}
  
 \end{definition}
