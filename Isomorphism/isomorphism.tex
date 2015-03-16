@@ -1,38 +1,69 @@
-\section{Isomorphism}
+\section{Isomorphism}\subsection{An ordering on elimination trees}
 \begin{definition}
-Let $G$ be a connected graph, $T$ an elimination tree of minimal height of $G$ and $P = p_1,\ldots, p_n$ a nonempty path in $T$ such that $p_1$ is the root of $T$. For a triple of the form ($G$, $T$, $P$):
+Let $G$ be a connected graph, $P = p_1,\ldots, p_n$ a sequence of vertices of $G$ and $T$ an elimination tree of a single component of $G-P$. For a triple of the form ($G$, $T$, $P$):
   
 \begin{itemize}
- \item $T_P = \{T_{p1}, \ldots, T_{pk}\}$ is the set of connected trees formed by descendants of $p_n$ in $T$.
- \item $P_1, \ldots, P_k$ will be the paths from the root of T to each of the roots of $T_P$.
- \item $G_P$ will be the graph induced by the descendants of $p_n$ and $p_n$ itself.
+ \item $r_T$ is the root of $T$
+ \item $T' = \{T_1, \ldots, T_k\}$ is the set of connected trees in $T-r_T$.
+ \item $P'$ is $P$ with the root of $T$ appended.
+ \item $G_T$ will be the graph induced by the nodes of $T$.
  \item For $u,v \in V(G), E_G(u, v)$ returns 1 if $\{u, v\} \in E(G)$ and 0 otherwise.
  \end{itemize}
 We will now proceed to define an ordering on such triples.
 \end{definition}
  
 \begin{definition}
-Let ($G, T, P$), ($H, Y, S$) be two triples of the form we have just defined such that $|V(G)| = |V(H)|$, $height(T) = height(Y)$ and $|P| = |S|$. We will say ($G, T, P$) $<$ ($H, Y, S$) if any of the following holds:
+Let ($G, T, P$), ($H, Y, S$) be two triples of the form we have just defined such that $|V(G)| = |V(H)|$ and $|P| = |S|$. We will say ($G, T, P$) $<$ ($H, Y, S$) if any of the following holds:
  
 \begin{itemize}
-\item $|G_P| < |H_S|$.
-\item $|G_P| = |H_S|$ and $|T_P| < |Y_S|$.
-\item $|G_P| = |H_S|$, $|T_P| = |Y_S|$ and $(E_G(p_1, p_n), \ldots, E_G(p_{n-1}, p_n))$ \\ $ < $ $(E_H(s_1, s_n), \ldots, E_H(s_{n-1}, s_n))$ lexicographically.
-\item $|G_P| = |H_S|$, $|T_P| = |Y_S|$, $E_G(p_i, p_n) = E_H(s_i, s_n)$ $\forall i = 1, \ldots, n-1$ and $((G, T, P_1), \ldots, (G, T, P_k)) < ((H, Y, S_1), \ldots, (H, Y, S_k))$, where each list is ordered by this relation.
+\item $|V(G_T)| < |V(H_Y)|$.
+\item $|V(G_T)| = |V(H_Y)|$ and $|T'| < |Y'|$.
+\item $|V(G_T)| = |V(H_Y)|$, $|T'| = |Y'|$ and $(E_G(p_1, r_T), \ldots, E_G(p_n, r_T))$ \\ $ < $ $(E_H(s_1, r_Y), \ldots, E_H(s_n, r_Y))$ lexicographically.
+\item $|V(G_T)| = |V(H_Y)|$, $|T'| = |Y'| = k$, $\forall i = 1, \ldots, n$ $E_G(p_i, r_T) = E_H(s_i, r_Y)$  and $((G, T_1, P'), \ldots, (G, T_k, P')) < ((H, Y_1, S'), \ldots, (H, Y_k, S'))$ lexicographically, where each list is ordered by this relation.
 \end{itemize}
- 
+\end{definition}
 \begin{lemma}
+\label{lemma:et comparison}
 For two triples ($G, T, P$), ($H, Y, S$), if neither ($G, T, P$) $<$ ($H, Y, S$) nor ($H, Y, S$) $<$ ($G, T, P$), then a  bijection $\phi$ exists such that $\forall v \in P \cup V(G_P)$ and $\forall u \in V(G_P)$, \{$u$, $v$\} $\in$ E($G$) $\iff$ \{$\phi(u)$, $\phi(v)$\} $\in$ E($H$) and $\phi(p_i) = s_i$.
 \end{lemma}
  
 \begin{proof}
-We will proof this by reverse induction on the size of the paths.
+We will proof this by induction on the size of the height of $T$.
 
 Base case: 
-If $|V(G_P)| = |V(H_S)| = 1$, then there is only one possible $\phi$. This $\phi$ obviously preserves the conditions mentioned in the lemma because of the third condition of the $<$ operator.
+If $height(T) = height(Y) = 1$, then there is only one possible $\phi$. This $\phi$ obviously preserves the conditions mentioned in the lemma because of the third condition of the $<$ operator.
 
 Induction:
-By induction a $\phi_i$ exists from each ($G, T, P_i$) to each ($H, Y, S_i$). We can build a $\phi$ from ($G, T, P$) to ($H, Y, S$) that preserves the conditions mentioned in the Lemma simply by joining the different $\phi_i$.
+By induction a $\phi_i$ exists from each ($G, T_i, P'$) to each ($H, Y_i, S'$). We can build a $\phi$ from ($G, T, P$) to ($H, Y, S$) that preserves the conditions mentioned in the Lemma simply by joining the different $\phi_i$.
 \end{proof}
  
+\begin{definition}
+For a connected graph $G$ and $P = p_1,\ldots, p_n$ a sequence of vertices of $G$, we will say an elimination tree $T$ is minimal iff no $Y$ exists such that ($G, Y, P$) $<$ ($G, T, P$).
 \end{definition}
+
+\subsection{Algorithm}
+\begin{lemma}
+For two minimal ($G, T, \epsilon$) and ($H, Y, \epsilon$), $G \cong H$ $\iff$ neither ($G, T, \epsilon$) $<$ ($H, Y, \epsilon$) nor ($H, Y, \epsilon$) $<$ ($G, T, \epsilon$).
+\end{lemma}
+
+\begin{proof}
+$\Longrightarrow$: If $G$ and $H$ are isomorphic, then the second condition holds because otherwise $T$ or $Y$ wouldn't be minimal.\\
+$\Longleftarrow$: This is proven in lemma~\ref{lemma:et comparison}.
+\end{proof}
+
+
+
+\subsection{Complexity analysis}
+
+\begin{itemize}
+\item Comparing two triples takes time $O(n^2)$.
+\item Finding $R$ takes time $f(d-1)n^2$ per vertex.
+\item $R$ is root($G$), so $|R| < g(d)$.
+\item Removing non minimal values for the second and third conditions takes $g(d)n^2$.
+\item Each step inside the loop takes $\sum\limits_{i=1}^n T(|V(H_i)|, d-1)$ to find the minimal decomposition and $O(n^2 k \log k)$ to sort them.
+\item Selecting the smallest $T_1,\ldots, T_k$ takes $O(kn^2)$.
+\end{itemize}
+
+From this we get the following:
+
+$T(n, d) \leq f(d)n^3 + g(d)n^2 + g(d) \left\{ \left(\sum\limits_{i=1}^k T(|V(H_i)|, d-1)\right) + O(n^2 k \log k) \right\} + O(kn^2)$
