@@ -1,0 +1,31 @@
+\begin{algorithm}[H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \underline{function MinET} $(G, P, G')$\;
+    \Input{$G$ is a connected graph, $P = (p_1, \ldots, p_n)$ is a sequence of nodes in $V(G)$ and $G'$ is a connected component of $G \setminus P$.}
+    \Output{A minimal elimination tree of $G'$ for $G$ and $P$}
+    \eIf{$td(G') == 1$}
+      {
+        Output the single node of $G'$\;
+      }
+      {
+        $R \leftarrow \{r \in V(G') : td(G'-r) +1 = td(G')\}$\;
+        Remove from $R$ every $r \in R$ that doesn't have a minimal number of components in $G'-r$\;
+        Remove from $R$ every $r \in R$ that doesn't have minimal values of $(E_G(p_1, r), \ldots, E_G(p_n, r))$\;
+        $T \leftarrow \emptyset$\;
+        \ForEach{$r \in R$}
+        {
+        	$P' \leftarrow (p_1, \ldots, p_n, r)$\;
+        	$ET \leftarrow$ tree formed by the single node $r$\;
+        	\ForEach{connected component $H_i \in G'-r$}
+        	{
+        		$ET_i \leftarrow$ MinET($G, P', H_i$)\;
+        		$ET \leftarrow$ $ET_i$ connected to the root of $ET$\;
+        	}
+        	$T \leftarrow T \cup \{ ET \}$\;
+        }
+        Output the minimal elimination tree in $T$ for graph $G$ and sequence $P$\;
+      }
+    \caption{Recursively generate a minimal elimination tree}
+\end{algorithm}

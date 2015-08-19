@@ -3,7 +3,7 @@
 \subsection{Basic definitions}
 
 \paragraph{}
-Vertex $x$ is said to be the ancestor of $y$ in a rooted forest $F$, if and only if $x$ belongs to the path between $y$ and the root of the component to which $x$ belongs, $y$ included.
+Vertex $x$ is said to be the ancestor of $y$ in a rooted forest $F$, if and only if $x$ belongs to the path between $y$ and the root of the component to which $y$ belongs.
 
 \begin{definition}
 The closure of a rooted forest $F$, expressed as $C$ = clos($F$), is defined as follows:
@@ -25,7 +25,7 @@ The tree-depth td($G$) of a graph $G$ is the minimum height of a rooted forest $
 
 \begin{figure}[H]
 \input{3d-cube-ET.tex}
-\caption{The graph $G$ and tree $T$ are in the left and right respectively. The doted edges in $T$, represent the clos($T$). Because $G$ $\subseteq$ clos($T$), height($T$) = 5 and the definition of tree depth we just gave, we know that td($G$) is at most~5.\label{fig:3d-cube}}
+\caption{The graph $G$ and tree $T$ are in the left and right respectively. The dotted edges in $T$, represent the clos($T$). Because $G$ $\subseteq$ clos($T$), height($T$) = 5 and the definition of tree depth we just gave, we know that td($G$) is at most~5.\label{fig:3d-cube}}
 \end{figure}
 \paragraph{}
 The tree depth of a graph $G$ is a numerical invariant of a graph. In other words, the tree depth is a property that depends only  on the abstract structure of a graph, not on its representation.	
@@ -42,7 +42,8 @@ The tree $T$ in Figure~\ref{fig:3d-cube} is an elimination forest for the graph 
 
 \begin{lemma}
 \label{lema:min-ET}
-Let $G$ be a graph and $F$ a rooted forest such that $G \subseteq$ clos($F$). Then, $Y$ exists, where $Y$ is an elimination forest of $G$ and height($Y$) $\leq$ height($F$).
+Let $G$ be a graph and $F$ a rooted forest such that $G \subseteq$ clos($F$). 
+Then, there exists an elimination forest $Y$ such that height($Y$) $\leq$ height($F$).
 \end{lemma}
 
 \begin{proof}

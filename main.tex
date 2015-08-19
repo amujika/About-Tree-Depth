@@ -5,6 +5,8 @@
 \usepackage{import}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{enumitem}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 
@@ -12,10 +14,12 @@
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{observation}[theorem]{\textbf{Observation}}
+\newtheorem{example}[theorem]{Example}
 
 
 
@@ -36,4 +40,5 @@
 \subimport{Game_theoretic_approach_to_CR/}{Game_theoretic_approach}
 
 \subimport{Isomorphism/}{isomorphism}
+
 \end{document}

@@ -1,0 +1,15 @@
+\begin{algorithm}[H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \underline{function CheckIso} $(G, H)$\;
+    \Input{$G$ and $H$ are connected graphs}
+    \Output{True if and only if $G$ is isomorphic to $H$}
+    
+    $T  \leftarrow MinET(G, \epsilon, G)$\;
+    $T' \leftarrow MinET(H, \epsilon, H)$\;
+    \eIf{$(G, T, \epsilon) < (H, T', \epsilon)$ or $(H, T', \epsilon) < (G, T, \epsilon)$}
+    {Output False\;}
+    {Output True\;}
+    \caption{Check isomorphism of two graphs}
+\end{algorithm}

@@ -90,8 +90,9 @@ With this observation we can build the following figure.
 \begin{lemma}
 For any digraph G, LIFO$^{vsc}$(G) $\geq$ SS$^{vsc}$(G).
 \end{lemma}
+@@TODO
 \begin{proof}
-@@TODO: rewrite it in a similar way to the other lemma's proofs.
+We will proof this by contradiction. Lets assume state ($X$, $R$) and a winning strategy $f$ for the LIFO game variant exist such that, $f$($X$, $R$) = $X'$, $|X'| < |X|$ and $|R|$ > 1. We will proof that the cops can't win with such an strategy. Define $R' \subset R$ such that ($X'$, $R'$) is a valid successor of ($X$, $R$).
 \end{proof}
 \begin{lemma}
 For any digraph G, SS$^{vsc}$(G) $\geq$ 1 + r($G$).
